@@ -1,0 +1,273 @@
+2026-06-05 05:53:42,010 [INFO] Aplikasi dimulai | frozen=True
+2026-06-05 05:53:42,011 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\CamilanKode\notebookForLearn\personal-notebook\dist\PersonalNotebook\_internal
+2026-06-05 05:53:42,011 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\CamilanKode\notebookForLearn\personal-notebook\dist\PersonalNotebook
+2026-06-05 05:53:42,699 [INFO] Database utama berhasil diinisialisasi.
+2026-06-05 05:53:44,751 [INFO] Flask akan berjalan di http://127.0.0.1:5000
+2026-06-05 05:53:44,791 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-06-05 05:53:44,791 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-05 05:53:45,079 [INFO] Flask siap. Membuka UI...
+2026-06-05 05:53:45,123 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5000
+2026-06-05 05:53:48,463 [INFO] 127.0.0.1 - - [05/Jun/2026 05:53:48] "GET / HTTP/1.1" 200 -
+2026-06-05 05:53:48,813 [INFO] 127.0.0.1 - - [05/Jun/2026 05:53:48] "GET /api/data HTTP/1.1" 200 -
+2026-06-05 05:53:49,192 [INFO] 127.0.0.1 - - [05/Jun/2026 05:53:49] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-05 06:10:08,593 [INFO] [pywebview] Window ditutup.
+2026-06-05 06:59:59,614 [INFO] Aplikasi dimulai | frozen=True
+2026-06-05 06:59:59,614 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\CamilanKode\notebookForLearn\personal-notebook\dist\PersonalNotebook\_internal
+2026-06-05 06:59:59,614 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\CamilanKode\notebookForLearn\personal-notebook\dist\PersonalNotebook
+2026-06-05 06:59:59,766 [INFO] Database utama berhasil diinisialisasi.
+2026-06-05 07:00:01,799 [INFO] Flask akan berjalan di http://127.0.0.1:5000
+2026-06-05 07:00:01,818 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-06-05 07:00:01,818 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-05 07:00:02,111 [INFO] Flask siap. Membuka UI...
+2026-06-05 07:00:02,147 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5000
+2026-06-05 07:00:02,917 [INFO] Aplikasi dimulai | frozen=True
+2026-06-05 07:00:02,917 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\CamilanKode\notebookForLearn\personal-notebook\dist\PersonalNotebook\_internal
+2026-06-05 07:00:02,917 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\CamilanKode\notebookForLearn\personal-notebook\dist\PersonalNotebook
+2026-06-05 07:00:03,126 [INFO] Aplikasi dimulai | frozen=True
+2026-06-05 07:00:03,126 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\CamilanKode\notebookForLearn\personal-notebook\dist\PersonalNotebook\_internal
+2026-06-05 07:00:03,126 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\CamilanKode\notebookForLearn\personal-notebook\dist\PersonalNotebook
+2026-06-05 07:00:03,126 [INFO] Database utama berhasil diinisialisasi.
+2026-06-05 07:00:03,447 [INFO] Database utama berhasil diinisialisasi.
+2026-06-05 07:00:03,903 [INFO] 127.0.0.1 - - [05/Jun/2026 07:00:03] "GET / HTTP/1.1" 200 -
+2026-06-05 07:00:04,068 [INFO] 127.0.0.1 - - [05/Jun/2026 07:00:04] "GET /api/data HTTP/1.1" 200 -
+2026-06-05 07:00:04,106 [INFO] 127.0.0.1 - - [05/Jun/2026 07:00:04] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-05 07:00:05,178 [INFO] Flask akan berjalan di http://127.0.0.1:5001
+2026-06-05 07:00:05,193 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+2026-06-05 07:00:05,193 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-05 07:00:05,482 [INFO] Flask siap. Membuka UI...
+2026-06-05 07:00:05,510 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5001
+2026-06-05 07:00:07,356 [INFO] 127.0.0.1 - - [05/Jun/2026 07:00:07] "GET / HTTP/1.1" 200 -
+2026-06-05 07:00:07,507 [INFO] Flask akan berjalan di http://127.0.0.1:5002
+2026-06-05 07:00:07,527 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5002
+2026-06-05 07:00:07,527 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-05 07:00:07,638 [INFO] 127.0.0.1 - - [05/Jun/2026 07:00:07] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-05 07:00:07,639 [INFO] 127.0.0.1 - - [05/Jun/2026 07:00:07] "GET /api/data HTTP/1.1" 200 -
+2026-06-05 07:00:07,821 [INFO] Flask siap. Membuka UI...
+2026-06-05 07:00:07,874 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5002
+2026-06-05 07:00:09,571 [INFO] 127.0.0.1 - - [05/Jun/2026 07:00:09] "GET / HTTP/1.1" 200 -
+2026-06-05 07:00:09,690 [INFO] 127.0.0.1 - - [05/Jun/2026 07:00:09] "GET /api/data HTTP/1.1" 200 -
+2026-06-05 07:00:10,047 [INFO] [pywebview] Window ditutup.
+2026-06-05 07:00:10,423 [INFO] [pywebview] Window ditutup.
+2026-06-05 07:00:11,646 [INFO] [pywebview] Window ditutup.
+2026-06-05 07:01:36,615 [INFO] Aplikasi dimulai | frozen=True
+2026-06-05 07:01:36,615 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik\_internal
+2026-06-05 07:01:36,615 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik
+2026-06-05 07:01:37,228 [INFO] Database utama berhasil diinisialisasi.
+2026-06-05 07:01:38,093 [INFO] Aplikasi dimulai | frozen=True
+2026-06-05 07:01:38,093 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik\_internal
+2026-06-05 07:01:38,093 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik
+2026-06-05 07:01:38,229 [INFO] Database utama berhasil diinisialisasi.
+2026-06-05 07:01:39,254 [INFO] Flask akan berjalan di http://127.0.0.1:5000
+2026-06-05 07:01:39,284 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-06-05 07:01:39,284 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-05 07:01:39,580 [INFO] Flask siap. Membuka UI...
+2026-06-05 07:01:39,610 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5000
+2026-06-05 07:01:39,710 [INFO] Aplikasi dimulai | frozen=True
+2026-06-05 07:01:39,710 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik\_internal
+2026-06-05 07:01:39,711 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik
+2026-06-05 07:01:39,876 [INFO] Database utama berhasil diinisialisasi.
+2026-06-05 07:01:40,276 [INFO] Aplikasi dimulai | frozen=True
+2026-06-05 07:01:40,276 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik\_internal
+2026-06-05 07:01:40,276 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik
+2026-06-05 07:01:40,448 [INFO] Database utama berhasil diinisialisasi.
+2026-06-05 07:01:41,783 [INFO] Flask akan berjalan di http://127.0.0.1:5001
+2026-06-05 07:01:41,804 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+2026-06-05 07:01:41,804 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-05 07:01:41,917 [INFO] 127.0.0.1 - - [05/Jun/2026 07:01:41] "GET / HTTP/1.1" 200 -
+2026-06-05 07:01:42,092 [INFO] Flask siap. Membuka UI...
+2026-06-05 07:01:42,154 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5001
+2026-06-05 07:01:42,276 [INFO] 127.0.0.1 - - [05/Jun/2026 07:01:42] "GET /api/data HTTP/1.1" 200 -
+2026-06-05 07:01:42,663 [INFO] 127.0.0.1 - - [05/Jun/2026 07:01:42] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-05 07:01:43,941 [INFO] Flask akan berjalan di http://127.0.0.1:5002
+2026-06-05 07:01:43,976 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5002
+2026-06-05 07:01:43,976 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-05 07:01:44,267 [INFO] Flask siap. Membuka UI...
+2026-06-05 07:01:44,321 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5002
+2026-06-05 07:01:45,136 [INFO] 127.0.0.1 - - [05/Jun/2026 07:01:45] "GET / HTTP/1.1" 200 -
+2026-06-05 07:01:45,828 [INFO] 127.0.0.1 - - [05/Jun/2026 07:01:45] "GET /api/data HTTP/1.1" 200 -
+2026-06-05 07:01:45,991 [INFO] 127.0.0.1 - - [05/Jun/2026 07:01:45] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-05 07:01:46,019 [INFO] Flask akan berjalan di http://127.0.0.1:5003
+2026-06-05 07:01:46,035 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5003
+2026-06-05 07:01:46,035 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-05 07:01:46,327 [INFO] Flask siap. Membuka UI...
+2026-06-05 07:01:46,401 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5003
+2026-06-05 07:01:46,422 [INFO] [pywebview] Window ditutup.
+2026-06-05 07:01:47,683 [INFO] 127.0.0.1 - - [05/Jun/2026 07:01:47] "GET / HTTP/1.1" 200 -
+2026-06-05 07:01:48,075 [INFO] 127.0.0.1 - - [05/Jun/2026 07:01:48] "GET /api/data HTTP/1.1" 200 -
+2026-06-05 07:01:48,442 [INFO] 127.0.0.1 - - [05/Jun/2026 07:01:48] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-05 07:01:50,402 [INFO] 127.0.0.1 - - [05/Jun/2026 07:01:50] "GET / HTTP/1.1" 200 -
+2026-06-05 07:01:50,731 [INFO] 127.0.0.1 - - [05/Jun/2026 07:01:50] "GET /api/data HTTP/1.1" 200 -
+2026-06-05 07:01:50,945 [INFO] 127.0.0.1 - - [05/Jun/2026 07:01:50] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-05 07:17:38,215 [INFO] [pywebview] Window ditutup.
+2026-06-05 07:17:39,056 [INFO] [pywebview] Window ditutup.
+2026-06-05 07:17:39,995 [INFO] [pywebview] Window ditutup.
+2026-06-05 07:17:41,842 [INFO] Aplikasi dimulai | frozen=True
+2026-06-05 07:17:41,842 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik\_internal
+2026-06-05 07:17:41,842 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik
+2026-06-05 07:17:41,977 [INFO] Database utama berhasil diinisialisasi.
+2026-06-05 07:17:44,019 [INFO] Flask akan berjalan di http://127.0.0.1:5000
+2026-06-05 07:17:44,034 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-06-05 07:17:44,034 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-05 07:17:44,339 [INFO] Flask siap. Membuka UI...
+2026-06-05 07:17:44,376 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5000
+2026-06-05 07:17:46,092 [INFO] 127.0.0.1 - - [05/Jun/2026 07:17:46] "GET / HTTP/1.1" 200 -
+2026-06-05 07:17:51,353 [INFO] 127.0.0.1 - - [05/Jun/2026 07:17:51] "GET /api/data HTTP/1.1" 200 -
+2026-06-05 07:17:51,468 [INFO] 127.0.0.1 - - [05/Jun/2026 07:17:51] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-05 14:29:12,318 [INFO] [pywebview] Window ditutup.
+2026-06-29 09:33:05,043 [INFO] Aplikasi dimulai | frozen=True
+2026-06-29 09:33:05,043 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik\_internal
+2026-06-29 09:33:05,044 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik
+2026-06-29 09:33:06,415 [INFO] Database utama berhasil diinisialisasi.
+2026-06-29 09:33:08,449 [INFO] Flask akan berjalan di http://127.0.0.1:5000
+2026-06-29 09:33:08,630 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-06-29 09:33:08,630 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-29 09:33:08,774 [INFO] Flask siap. Membuka UI...
+2026-06-29 09:33:08,831 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5000
+2026-06-29 09:33:09,675 [INFO] Aplikasi dimulai | frozen=True
+2026-06-29 09:33:09,675 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik\_internal
+2026-06-29 09:33:09,676 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik
+2026-06-29 09:33:09,847 [INFO] Database utama berhasil diinisialisasi.
+2026-06-29 09:33:11,904 [INFO] Flask akan berjalan di http://127.0.0.1:5001
+2026-06-29 09:33:12,312 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+2026-06-29 09:33:12,312 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-29 09:33:12,588 [INFO] Flask siap. Membuka UI...
+2026-06-29 09:33:12,636 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5001
+2026-06-29 09:33:20,638 [INFO] 127.0.0.1 - - [29/Jun/2026 09:33:20] "GET / HTTP/1.1" 200 -
+2026-06-29 09:33:20,765 [INFO] 127.0.0.1 - - [29/Jun/2026 09:33:20] "GET / HTTP/1.1" 200 -
+2026-06-29 09:33:21,995 [INFO] 127.0.0.1 - - [29/Jun/2026 09:33:21] "GET /api/data HTTP/1.1" 200 -
+2026-06-29 09:33:23,032 [INFO] 127.0.0.1 - - [29/Jun/2026 09:33:23] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-29 09:33:29,720 [INFO] 127.0.0.1 - - [29/Jun/2026 09:33:29] "GET /editor?action=add_mk HTTP/1.1" 200 -
+2026-06-29 09:34:18,050 [INFO] 127.0.0.1 - - [29/Jun/2026 09:34:18] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-06-29 09:34:18,062 [INFO] 127.0.0.1 - - [29/Jun/2026 09:34:18] "GET /?mk=Project%20Base%20Learning%20Kimor HTTP/1.1" 200 -
+2026-06-29 09:34:18,154 [INFO] 127.0.0.1 - - [29/Jun/2026 09:34:18] "GET /api/data HTTP/1.1" 200 -
+2026-06-29 09:34:22,626 [INFO] 127.0.0.1 - - [29/Jun/2026 09:34:22] "GET /editor?action=add_pertemuan&mk=Project%20Base%20Learning%20Kimor HTTP/1.1" 200 -
+2026-06-29 09:35:39,338 [INFO] 127.0.0.1 - - [29/Jun/2026 09:35:39] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-06-29 09:35:39,360 [INFO] 127.0.0.1 - - [29/Jun/2026 09:35:39] "GET /?mk=Project%20Base%20Learning%20Kimor&topik=Prosedur%20Kerja HTTP/1.1" 200 -
+2026-06-29 09:35:39,509 [INFO] 127.0.0.1 - - [29/Jun/2026 09:35:39] "GET /api/data HTTP/1.1" 200 -
+2026-06-29 09:35:52,740 [INFO] 127.0.0.1 - - [29/Jun/2026 09:35:52] "GET /editor?action=edit_pertemuan&mk=Project%20Base%20Learning%20Kimor&id=1 HTTP/1.1" 200 -
+2026-06-29 09:35:54,186 [INFO] 127.0.0.1 - - [29/Jun/2026 09:35:54] "GET / HTTP/1.1" 200 -
+2026-06-29 09:35:54,258 [INFO] 127.0.0.1 - - [29/Jun/2026 09:35:54] "GET /api/data HTTP/1.1" 200 -
+2026-06-29 09:35:58,954 [INFO] 127.0.0.1 - - [29/Jun/2026 09:35:58] "GET /editor?action=add_element&mk=Project%20Base%20Learning%20Kimor&topik=Prosedur%20Kerja HTTP/1.1" 200 -
+2026-06-29 09:36:18,227 [INFO] 127.0.0.1 - - [29/Jun/2026 09:36:18] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-06-29 09:36:18,242 [INFO] 127.0.0.1 - - [29/Jun/2026 09:36:18] "GET /?mk=Project%20Base%20Learning%20Kimor&topik=Prosedur%20Kerja HTTP/1.1" 200 -
+2026-06-29 09:36:18,307 [INFO] 127.0.0.1 - - [29/Jun/2026 09:36:18] "GET /api/data HTTP/1.1" 200 -
+2026-06-29 09:36:21,226 [INFO] 127.0.0.1 - - [29/Jun/2026 09:36:21] "GET /editor?action=add_element&mk=Project%20Base%20Learning%20Kimor&topik=Prosedur%20Kerja HTTP/1.1" 200 -
+2026-06-29 09:44:46,045 [INFO] 127.0.0.1 - - [29/Jun/2026 09:44:46] "POST /upload/image HTTP/1.1" 200 -
+2026-06-29 09:44:46,180 [INFO] 127.0.0.1 - - [29/Jun/2026 09:44:46] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-06-29 09:44:46,202 [INFO] 127.0.0.1 - - [29/Jun/2026 09:44:46] "GET /?mk=Project%20Base%20Learning%20Kimor&topik=Prosedur%20Kerja HTTP/1.1" 200 -
+2026-06-29 09:44:46,468 [INFO] 127.0.0.1 - - [29/Jun/2026 09:44:46] "GET /api/data HTTP/1.1" 200 -
+2026-06-29 09:44:46,688 [INFO] 127.0.0.1 - - [29/Jun/2026 09:44:46] "GET /storage/Project_Base_Learning_Kimor/Prosedur_Kerja/Project_Base_Learning_Kimor_Prosedur_Kerja_20260629_094446.png HTTP/1.1" 200 -
+2026-06-29 10:29:52,626 [INFO] 127.0.0.1 - - [29/Jun/2026 10:29:52] "GET /editor?action=add_element&mk=Project%20Base%20Learning%20Kimor&topik=Prosedur%20Kerja HTTP/1.1" 200 -
+2026-06-29 10:31:47,512 [INFO] 127.0.0.1 - - [29/Jun/2026 10:31:47] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-06-29 10:31:47,554 [INFO] 127.0.0.1 - - [29/Jun/2026 10:31:47] "GET /?mk=Project%20Base%20Learning%20Kimor&topik=Prosedur%20Kerja HTTP/1.1" 200 -
+2026-06-29 10:31:47,793 [INFO] 127.0.0.1 - - [29/Jun/2026 10:31:47] "GET /api/data HTTP/1.1" 200 -
+2026-06-29 10:31:47,991 [INFO] 127.0.0.1 - - [29/Jun/2026 10:31:47] "[33mGET /index.html HTTP/1.1[0m" 404 -
+2026-06-29 10:31:47,993 [INFO] 127.0.0.1 - - [29/Jun/2026 10:31:47] "[36mGET /storage/Project_Base_Learning_Kimor/Prosedur_Kerja/Project_Base_Learning_Kimor_Prosedur_Kerja_20260629_094446.png HTTP/1.1[0m" 304 -
+2026-06-29 10:31:59,950 [INFO] 127.0.0.1 - - [29/Jun/2026 10:31:59] "[33mGET /index.html HTTP/1.1[0m" 404 -
+2026-06-29 10:32:00,179 [INFO] 127.0.0.1 - - [29/Jun/2026 10:32:00] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-29 10:32:09,187 [INFO] 127.0.0.1 - - [29/Jun/2026 10:32:09] "[33mGET /index.html HTTP/1.1[0m" 404 -
+2026-06-29 10:32:09,419 [INFO] 127.0.0.1 - - [29/Jun/2026 10:32:09] "[33mGET /index.html HTTP/1.1[0m" 404 -
+2026-06-29 10:32:09,571 [INFO] 127.0.0.1 - - [29/Jun/2026 10:32:09] "[33mGET /index.html HTTP/1.1[0m" 404 -
+2026-06-29 10:32:09,725 [INFO] 127.0.0.1 - - [29/Jun/2026 10:32:09] "[33mGET /index.html HTTP/1.1[0m" 404 -
+2026-06-29 10:32:35,605 [INFO] 127.0.0.1 - - [29/Jun/2026 10:32:35] "[33mGET /index.html HTTP/1.1[0m" 404 -
+2026-06-29 10:32:57,803 [INFO] 127.0.0.1 - - [29/Jun/2026 10:32:57] "[33mGET /index.html HTTP/1.1[0m" 404 -
+2026-06-29 10:33:03,668 [INFO] 127.0.0.1 - - [29/Jun/2026 10:33:03] "GET / HTTP/1.1" 200 -
+2026-06-29 10:33:04,596 [INFO] 127.0.0.1 - - [29/Jun/2026 10:33:04] "GET /api/data HTTP/1.1" 200 -
+2026-06-29 10:33:14,485 [INFO] 127.0.0.1 - - [29/Jun/2026 10:33:14] "GET / HTTP/1.1" 200 -
+2026-06-29 10:33:14,651 [INFO] 127.0.0.1 - - [29/Jun/2026 10:33:14] "GET /api/data HTTP/1.1" 200 -
+2026-06-29 10:34:15,913 [INFO] 127.0.0.1 - - [29/Jun/2026 10:34:15] "[33mGET /index.html HTTP/1.1[0m" 404 -
+2026-06-29 10:34:17,655 [INFO] 127.0.0.1 - - [29/Jun/2026 10:34:17] "[33mGET /index.html HTTP/1.1[0m" 404 -
+2026-06-29 10:34:18,302 [INFO] 127.0.0.1 - - [29/Jun/2026 10:34:18] "[33mGET /index.html HTTP/1.1[0m" 404 -
+2026-06-29 10:34:18,470 [INFO] 127.0.0.1 - - [29/Jun/2026 10:34:18] "[33mGET /index.html HTTP/1.1[0m" 404 -
+2026-06-29 10:34:18,593 [INFO] 127.0.0.1 - - [29/Jun/2026 10:34:18] "[33mGET /index.html HTTP/1.1[0m" 404 -
+2026-06-29 10:34:32,531 [INFO] 127.0.0.1 - - [29/Jun/2026 10:34:32] "[33mGET /view.html HTTP/1.1[0m" 404 -
+2026-06-29 10:34:55,848 [INFO] 127.0.0.1 - - [29/Jun/2026 10:34:55] "GET /editor?action=edit_element&mk=Project%20Base%20Learning%20Kimor&topik=Prosedur%20Kerja&id=3 HTTP/1.1" 200 -
+2026-06-29 10:35:03,968 [INFO] 127.0.0.1 - - [29/Jun/2026 10:35:03] "[32mPOST /api/update HTTP/1.1[0m" 302 -
+2026-06-29 10:35:03,984 [INFO] 127.0.0.1 - - [29/Jun/2026 10:35:03] "GET /?mk=Project%20Base%20Learning%20Kimor&topik=Prosedur%20Kerja HTTP/1.1" 200 -
+2026-06-29 10:35:04,071 [INFO] 127.0.0.1 - - [29/Jun/2026 10:35:04] "GET /api/data HTTP/1.1" 200 -
+2026-06-29 10:35:04,113 [INFO] 127.0.0.1 - - [29/Jun/2026 10:35:04] "[36mGET /storage/Project_Base_Learning_Kimor/Prosedur_Kerja/Project_Base_Learning_Kimor_Prosedur_Kerja_20260629_094446.png HTTP/1.1[0m" 304 -
+2026-06-29 10:35:04,134 [INFO] 127.0.0.1 - - [29/Jun/2026 10:35:04] "[33mGET /index.html HTTP/1.1[0m" 404 -
+2026-06-29 10:35:07,189 [INFO] 127.0.0.1 - - [29/Jun/2026 10:35:07] "GET /editor?action=edit_element&mk=Project%20Base%20Learning%20Kimor&topik=Prosedur%20Kerja&id=3 HTTP/1.1" 200 -
+2026-06-29 10:48:39,963 [INFO] [pywebview] Window ditutup.
+2026-06-29 10:56:10,415 [INFO] Aplikasi dimulai | frozen=True
+2026-06-29 10:56:10,416 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik\_internal
+2026-06-29 10:56:10,416 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik
+2026-06-29 10:56:10,634 [INFO] Database utama berhasil diinisialisasi.
+2026-06-29 10:56:12,684 [INFO] Flask akan berjalan di http://127.0.0.1:5000
+2026-06-29 10:56:12,799 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-06-29 10:56:12,800 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-29 10:56:13,010 [INFO] Flask siap. Membuka UI...
+2026-06-29 10:56:13,088 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5000
+2026-06-29 10:56:21,154 [INFO] 127.0.0.1 - - [29/Jun/2026 10:56:21] "GET / HTTP/1.1" 200 -
+2026-06-29 10:56:21,622 [INFO] 127.0.0.1 - - [29/Jun/2026 10:56:21] "GET /api/data HTTP/1.1" 200 -
+2026-06-29 10:56:22,209 [INFO] 127.0.0.1 - - [29/Jun/2026 10:56:22] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-29 10:56:24,808 [INFO] 127.0.0.1 - - [29/Jun/2026 10:56:24] "[33mGET /index.html HTTP/1.1[0m" 404 -
+2026-06-29 10:56:24,910 [INFO] 127.0.0.1 - - [29/Jun/2026 10:56:24] "GET /storage/Project_Base_Learning_Kimor/Prosedur_Kerja/Project_Base_Learning_Kimor_Prosedur_Kerja_20260629_094446.png HTTP/1.1" 200 -
+2026-06-29 10:56:28,400 [INFO] 127.0.0.1 - - [29/Jun/2026 10:56:28] "GET /editor?action=add_element&mk=Project%20Base%20Learning%20Kimor&topik=Prosedur%20Kerja HTTP/1.1" 200 -
+2026-06-29 10:56:47,324 [INFO] 127.0.0.1 - - [29/Jun/2026 10:56:47] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-06-29 10:56:47,350 [INFO] 127.0.0.1 - - [29/Jun/2026 10:56:47] "GET /?mk=Project%20Base%20Learning%20Kimor&topik=Prosedur%20Kerja HTTP/1.1" 200 -
+2026-06-29 10:56:47,430 [INFO] 127.0.0.1 - - [29/Jun/2026 10:56:47] "GET /api/data HTTP/1.1" 200 -
+2026-06-29 10:56:47,462 [INFO] 127.0.0.1 - - [29/Jun/2026 10:56:47] "[36mGET /storage/Project_Base_Learning_Kimor/Prosedur_Kerja/Project_Base_Learning_Kimor_Prosedur_Kerja_20260629_094446.png HTTP/1.1[0m" 304 -
+2026-06-29 10:56:47,497 [INFO] 127.0.0.1 - - [29/Jun/2026 10:56:47] "[33mGET /index.html HTTP/1.1[0m" 404 -
+2026-06-29 10:56:57,570 [INFO] 127.0.0.1 - - [29/Jun/2026 10:56:57] "POST /api/delete HTTP/1.1" 200 -
+2026-06-29 10:57:04,575 [INFO] 127.0.0.1 - - [29/Jun/2026 10:57:04] "GET /editor?action=edit_element&mk=Project%20Base%20Learning%20Kimor&topik=Prosedur%20Kerja&id=4 HTTP/1.1" 200 -
+2026-06-29 10:57:10,011 [INFO] 127.0.0.1 - - [29/Jun/2026 10:57:10] "[32mPOST /api/update HTTP/1.1[0m" 302 -
+2026-06-29 10:57:10,035 [INFO] 127.0.0.1 - - [29/Jun/2026 10:57:10] "GET /?mk=Project%20Base%20Learning%20Kimor&topik=Prosedur%20Kerja HTTP/1.1" 200 -
+2026-06-29 10:57:10,110 [INFO] 127.0.0.1 - - [29/Jun/2026 10:57:10] "GET /api/data HTTP/1.1" 200 -
+2026-06-29 10:57:10,148 [INFO] 127.0.0.1 - - [29/Jun/2026 10:57:10] "[36mGET /storage/Project_Base_Learning_Kimor/Prosedur_Kerja/Project_Base_Learning_Kimor_Prosedur_Kerja_20260629_094446.png HTTP/1.1[0m" 304 -
+2026-06-29 11:04:28,000 [INFO] [pywebview] Window ditutup.
+2026-07-04 20:13:58,056 [INFO] Aplikasi dimulai | frozen=True
+2026-07-04 20:13:58,057 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik\_internal
+2026-07-04 20:13:58,057 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik
+2026-07-04 20:13:58,833 [INFO] Database utama berhasil diinisialisasi.
+2026-07-04 20:14:00,848 [INFO] Flask akan berjalan di http://127.0.0.1:5000
+2026-07-04 20:14:00,987 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-04 20:14:00,987 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-04 20:14:01,173 [INFO] Flask siap. Membuka UI...
+2026-07-04 20:14:01,239 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5000
+2026-07-04 20:14:12,805 [INFO] Aplikasi dimulai | frozen=True
+2026-07-04 20:14:12,806 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik\_internal
+2026-07-04 20:14:12,806 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\Kimia Organik
+2026-07-04 20:14:13,202 [INFO] Database utama berhasil diinisialisasi.
+2026-07-04 20:14:15,225 [INFO] Flask akan berjalan di http://127.0.0.1:5001
+2026-07-04 20:14:15,272 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+2026-07-04 20:14:15,272 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-04 20:14:15,749 [INFO] Flask siap. Membuka UI...
+2026-07-04 20:14:15,939 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5001
+2026-07-04 20:14:17,172 [INFO] 127.0.0.1 - - [04/Jul/2026 20:14:17] "GET / HTTP/1.1" 200 -
+2026-07-04 20:14:17,688 [INFO] 127.0.0.1 - - [04/Jul/2026 20:14:17] "GET /api/data HTTP/1.1" 200 -
+2026-07-04 20:14:18,220 [INFO] 127.0.0.1 - - [04/Jul/2026 20:14:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-07-04 20:14:21,762 [INFO] 127.0.0.1 - - [04/Jul/2026 20:14:21] "GET / HTTP/1.1" 200 -
+2026-07-04 20:14:23,038 [INFO] 127.0.0.1 - - [04/Jul/2026 20:14:23] "GET /api/data HTTP/1.1" 200 -
+2026-07-04 20:14:23,427 [INFO] 127.0.0.1 - - [04/Jul/2026 20:14:23] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-07-04 20:14:29,846 [INFO] [pywebview] Window ditutup.
+2026-07-04 20:14:50,568 [INFO] 127.0.0.1 - - [04/Jul/2026 20:14:50] "GET /editor?action=add_mk HTTP/1.1" 200 -
+2026-07-04 20:15:05,101 [INFO] 127.0.0.1 - - [04/Jul/2026 20:15:05] "GET / HTTP/1.1" 200 -
+2026-07-04 20:15:05,172 [INFO] 127.0.0.1 - - [04/Jul/2026 20:15:05] "GET /api/data HTTP/1.1" 200 -
+2026-07-04 20:15:08,121 [INFO] 127.0.0.1 - - [04/Jul/2026 20:15:08] "GET /editor?action=add_mk HTTP/1.1" 200 -
+2026-07-04 20:15:21,732 [INFO] 127.0.0.1 - - [04/Jul/2026 20:15:21] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-07-04 20:15:21,744 [INFO] 127.0.0.1 - - [04/Jul/2026 20:15:21] "GET /?mk=Kimia%20Unsur HTTP/1.1" 200 -
+2026-07-04 20:15:21,816 [INFO] 127.0.0.1 - - [04/Jul/2026 20:15:21] "GET /api/data HTTP/1.1" 200 -
+2026-07-04 20:15:23,904 [INFO] 127.0.0.1 - - [04/Jul/2026 20:15:23] "GET /editor?action=add_pertemuan&mk=Kimia%20Unsur HTTP/1.1" 200 -
+2026-07-04 20:15:52,460 [INFO] 127.0.0.1 - - [04/Jul/2026 20:15:52] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-07-04 20:15:52,471 [INFO] 127.0.0.1 - - [04/Jul/2026 20:15:52] "GET /?mk=Kimia%20Unsur&topik=Langmuir-Hinshelwood%20mechanism HTTP/1.1" 200 -
+2026-07-04 20:15:52,568 [INFO] 127.0.0.1 - - [04/Jul/2026 20:15:52] "GET /api/data HTTP/1.1" 200 -
+2026-07-04 20:15:59,243 [INFO] 127.0.0.1 - - [04/Jul/2026 20:15:59] "GET /editor?action=add_element&mk=Kimia%20Unsur&topik=Langmuir-Hinshelwood%20mechanism HTTP/1.1" 200 -
+2026-07-04 20:23:56,525 [INFO] 127.0.0.1 - - [04/Jul/2026 20:23:56] "GET / HTTP/1.1" 200 -
+2026-07-04 20:23:57,181 [INFO] 127.0.0.1 - - [04/Jul/2026 20:23:57] "GET /api/data HTTP/1.1" 200 -
+2026-07-04 20:24:04,176 [INFO] 127.0.0.1 - - [04/Jul/2026 20:24:04] "GET /editor?action=add_element&mk=Kimia%20Unsur&topik=Langmuir-Hinshelwood%20mechanism HTTP/1.1" 200 -
+2026-07-04 20:24:27,492 [INFO] [pywebview] Window ditutup.

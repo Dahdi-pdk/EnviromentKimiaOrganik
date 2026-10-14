@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organic Lab — Personal Notebook</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Organic Chemistry Dark Lab Palette */
+            --bg:           #08100d;
+            --surface:      #0d1a14;
+            --surface2:     #122019;
+            --surface3:     #162a1f;
+            --border:       #1e3528;
+            --border-light: #2a4a38;
+            --ink:          #d4edd8;
+            --ink-dim:      #7aaa88;
+            --ink-faint:    #3d6b4a;
+            --accent:       #3dffa0;
+            --accent2:      #00d46b;
+            --accent-dim:   #1a7a4a;
+            --accent-glow:  rgba(61,255,160,0.07);
+            --accent-glow2: rgba(61,255,160,0.14);
+            --danger:       #ff5566;
+            --success:      #3dffa0;
+            --gold:         #f0c060;
+            --purple:       #c084fc;
+            --sidebar-w:    300px;
+            --topbar-h:     56px;
+            --radius:       8px;
+            --font-display: 'Syne', sans-serif;
+            --font-body:    'Crimson Pro', Georgia, serif;
+            --font-mono:    'Space Mono', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { height: 100%; }
+
+        body {
+            height: 100%;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.75;
+            overflow: hidden;
+        }
+
+        /* ── MOLECULAR BACKGROUND ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 40% at 20% 80%, rgba(0,80,40,0.22) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 60% at 80% 20%, rgba(0,50,60,0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 30% 30% at 50% 50%, rgba(61,255,160,0.03) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ── ANIMATED HEXAGON GRID ── */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='104' viewBox='0 0 60 104'%3E%3Cpath d='M30 2 L58 17 L58 47 L30 62 L2 47 L2 17Z' fill='none' stroke='rgba(61,255,160,0.04)' stroke-width='0.8'/%3E%3Cpath d='M30 62 L58 77 L58 107 L30 122 L2 107 L2 77Z' fill='none' stroke='rgba(61,255,160,0.04)' stroke-width='0.8'/%3E%3C/svg%3E");
+            background-size: 60px 104px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        #app {
+            display: flex;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── MOBILE TOPBAR ── */
+        #mobile-topbar {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: var(--topbar-h);
+            background: rgba(8,16,13,0.92);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 50;
+            align-items: center;
+            padding: 0 14px;
+            gap: 12px;
+        }
+
+        #btn-hamburger {
+            width: 40px; height: 40px;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 5px; background: transparent; border: none;
+            cursor: pointer; padding: 6px;
+            border-radius: var(--radius); flex-shrink: 0;
+            transition: background 0.12s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        #btn-hamburger:active { background: var(--surface2); }
+        .ham-bar {
+            width: 20px; height: 1.5px;
+            background: var(--ink-dim); border-radius: 2px;
+            transition: all 0.22s; transform-origin: center;
+        }
+        body.sidebar-open .ham-bar:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        body.sidebar-open .ham-bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        body.sidebar-open .ham-bar:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+        #mobile-title {
+            flex: 1;
+            font-family: var(--font-display);
+            font-size: 1rem; font-weight: 700;
+            color: var(--accent);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            letter-spacing: -0.01em;
+        }
+
+        .btn-add-mob {
+            display: flex; align-items: center; justify-content: center;
+            width: 36px; height: 36px;
+            background: var(--accent); color: #001a0a;
+            border: none; border-radius: var(--radius);
+            font-size: 1.25rem; font-weight: 700;
+            cursor: pointer; text-decoration: none; flex-shrink: 0;
+            transition: all 0.15s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .btn-add-mob:active { background: #60ffb8; }
+
+        /* ── SIDEBAR BACKDROP ── */
+        #sidebar-backdrop {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.7); z-index: 60;
+            backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+            opacity: 0; transition: opacity 0.25s;
+        }
+
+        /* ── SIDEBAR ── */
+        #sidebar {
+            width: var(--sidebar-w);
+            min-width: var(--sidebar-w);
+            background: rgba(13,26,20,0.97);
+            border-right: 1px solid var(--border);
+            display: flex; flex-direction: column;
+            overflow: hidden; z-index: 70;
+            transition: width 0.3s cubic-bezier(0.4,0,0.2,1),
+                        min-width 0.3s cubic-bezier(0.4,0,0.2,1),
+                        border-color 0.3s ease,
+                        transform 0.28s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        body.sidebar-collapsed #sidebar { width: 0; min-width: 0; border-right-color: transparent; }
+
+        #btn-toggle-sidebar {
+            display: flex; align-items: center; justify-content: center;
+            width: 30px; height: 30px;
+            background: transparent; border: 1px solid var(--border);
+            border-radius: var(--radius); cursor: pointer;
+            color: var(--ink-faint); font-size: 0.82rem; flex-shrink: 0;
+            transition: all 0.15s;
+        }
+        #btn-toggle-sidebar:hover { background: var(--surface2); border-color: var(--border-light); color: var(--accent); }
+        #btn-toggle-sidebar .toggle-icon { display: inline-block; transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); }
+        body.sidebar-collapsed #btn-toggle-sidebar .toggle-icon { transform: rotate(180deg); }
+
+        .sidebar-header {
+            padding: 28px 20px 20px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Benzene ring decoration */
+        .sidebar-header::after {
+            content: '';
+            position: absolute;
+            right: -24px; top: -24px;
+            width: 100px; height: 100px;
+            border: 1.5px solid rgba(61,255,160,0.08);
+            border-radius: 50%;
+            box-shadow: 0 0 0 20px rgba(61,255,160,0.04), 0 0 0 40px rgba(61,255,160,0.02);
+        }
+
+        .sidebar-header .logo {
+            font-family: var(--font-display);
+            font-size: 1.3rem; font-weight: 800;
+            color: var(--accent);
+            letter-spacing: -0.03em; line-height: 1.1;
+        }
+
+        .sidebar-header .logo-sub {
+            display: block;
+            font-size: 0.58rem;
+            font-family: var(--font-mono);
+            color: var(--ink-faint); font-weight: 400;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            margin-top: 6px;
+        }
+
+        .sidebar-header .molecule-formula {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--accent-dim);
+            margin-top: 4px;
+            letter-spacing: 0.05em;
+            opacity: 0.7;
+        }
+
+        .sidebar-actions {
+            padding: 10px 12px;
+            display: flex; gap: 6px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .btn-sidebar-action {
+            flex: 1; padding: 9px 4px;
+            background: transparent;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            color: var(--ink-dim);
+            font-family: var(--font-mono);
+            font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase;
+            cursor: pointer; text-decoration: none; text-align: center;
+            display: block; transition: all 0.18s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .btn-sidebar-action:hover { background: var(--accent-glow2); border-color: var(--accent-dim); color: var(--accent); box-shadow: 0 0 12px rgba(61,255,160,0.1); }
+
+        /* ── SEARCH ── */
+        #search-wrap { padding: 10px 12px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+        #search-input-wrap { position: relative; display: flex; align-items: center; }
+        #search-icon { position: absolute; left: 10px; color: var(--ink-faint); font-size: 0.75rem; pointer-events: none; }
+        #search-input {
+            width: 100%;
+            background: var(--surface2);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            padding: 7px 30px 7px 28px;
+            color: var(--ink); font-family: var(--font-mono);
+            font-size: 0.7rem; outline: none; transition: all 0.18s;
+        }
+        #search-input::placeholder { color: var(--ink-faint); }
+        #search-input:focus { border-color: var(--accent-dim); box-shadow: 0 0 0 3px rgba(61,255,160,0.08); }
+        #search-clear { position: absolute; right: 8px; background: none; border: none; color: var(--ink-faint); cursor: pointer; font-size: 0.75rem; padding: 2px 4px; display: none; line-height: 1; }
+        #search-clear:hover { color: var(--accent); }
+
+        #search-results { display: none; flex: 1; overflow-y: auto; padding: 8px 0; }
+        #search-results::-webkit-scrollbar { width: 3px; }
+        #search-results::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 2px; }
+
+        .search-result-item { padding: 10px 16px; cursor: pointer; border-bottom: 1px solid var(--border); transition: background 0.12s; }
+        .search-result-item:hover { background: var(--surface2); }
+        .search-result-mk { font-family: var(--font-mono); font-size: 0.6rem; color: var(--accent-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+        .search-result-topik { font-size: 0.83rem; color: var(--ink); font-weight: 500; margin-bottom: 4px; line-height: 1.3; }
+        .search-result-snippet { font-size: 0.73rem; color: var(--ink-dim); line-height: 1.5; white-space: pre-wrap; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+        .search-result-type { display: inline-block; font-family: var(--font-mono); font-size: 0.56rem; padding: 1px 6px; border-radius: 3px; border: 1px solid var(--border-light); color: var(--ink-faint); margin-bottom: 4px; }
+        .search-empty { padding: 24px 16px; text-align: center; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faint); line-height: 1.7; }
+        mark.hl { background: rgba(61,255,160,0.2); color: var(--accent); border-radius: 2px; padding: 0 1px; }
+
+        #mk-list { flex: 1; overflow-y: auto; padding: 8px 0; -webkit-overflow-scrolling: touch; }
+        #mk-list::-webkit-scrollbar { width: 3px; }
+        #mk-list::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 2px; }
+
+        .mk-header {
+            display: flex; align-items: center; gap: 8px;
+            padding: 11px 16px; cursor: pointer;
+            transition: all 0.15s;
+            border-left: 2px solid transparent;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .mk-header:hover { background: var(--surface2); }
+        .mk-header.active { border-left-color: var(--accent); background: var(--accent-glow); }
+
+        /* Atom node indicator */
+        .mk-atom {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--border-light); flex-shrink: 0;
+            transition: all 0.2s;
+            box-shadow: 0 0 0 0 rgba(61,255,160,0);
+        }
+        .mk-header.active .mk-atom { background: var(--accent); box-shadow: 0 0 8px rgba(61,255,160,0.5); }
+
+        .mk-toggle { font-size: 0.58rem; color: var(--ink-faint); transition: transform 0.2s; width: 10px; flex-shrink: 0; }
+        .mk-header.open .mk-toggle { transform: rotate(90deg); }
+
+        .mk-name {
+            flex: 1; font-size: 0.82rem; font-weight: 500;
+            color: var(--ink); font-family: var(--font-mono);
+            letter-spacing: -0.01em;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+
+        .mk-actions { display: none; gap: 2px; align-items: center; }
+        .mk-header:hover .mk-actions { display: flex; }
+
+        .btn-icon {
+            width: 28px; height: 28px; display: flex;
+            align-items: center; justify-content: center;
+            background: transparent; border: none; border-radius: 4px;
+            cursor: pointer; color: var(--ink-faint); font-size: 0.8rem;
+            transition: all 0.12s; text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .btn-icon:hover { background: var(--surface2); color: var(--ink); }
+        .btn-icon.danger:hover { background: rgba(255,85,102,0.15); color: var(--danger); }
+
+        .pertemuan-list { overflow: hidden; max-height: 0; transition: max-height 0.3s ease; }
+        .pertemuan-list.open { max-height: 1200px; }
+
+        .pertemuan-item {
+            display: flex; align-items: center;
+            padding: 9px 16px 9px 32px; cursor: pointer;
+            transition: background 0.12s;
+            border-left: 2px solid transparent; gap: 8px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .pertemuan-item:hover { background: var(--surface2); }
+        .pertemuan-item.active { border-left-color: var(--accent); background: var(--accent-glow); }
+        .pertemuan-item.active .pertemuan-name { color: var(--accent); }
+
+        .pertemuan-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--border-light); flex-shrink: 0; }
+        .pertemuan-item.active .pertemuan-dot { background: var(--accent); }
+        .pertemuan-name { flex: 1; font-size: 0.78rem; color: var(--ink-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .pertemuan-actions { display: none; gap: 2px; }
+        .pertemuan-item:hover .pertemuan-actions { display: flex; }
+
+        /* ── MAIN CONTENT ── */
+        #main { flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+
+        #content-header {
+            padding: 20px 40px 18px;
+            border-bottom: 1px solid var(--border);
+            display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+            flex-shrink: 0;
+            background: rgba(8,16,13,0.5);
+            backdrop-filter: blur(8px);
+        }
+
+        .content-title-group { flex: 1; min-width: 0; }
+
+        .content-label {
+            font-family: var(--font-mono);
+            font-size: 0.56rem; letter-spacing: 0.22em;
+            text-transform: uppercase; color: var(--ink-faint);
+            margin-bottom: 5px;
+        }
+
+        #content-title {
+            font-family: var(--font-display);
+            font-size: 1.6rem; font-weight: 700;
+            color: var(--ink); line-height: 1.15; word-break: break-word;
+            letter-spacing: -0.02em;
+        }
+
+        #content-meta {
+            font-family: var(--font-mono);
+            font-size: 0.65rem; color: var(--ink-faint); margin-top: 6px;
+            letter-spacing: 0.03em;
+        }
+
+        .btn-add-block {
+            display: flex; align-items: center; gap: 7px;
+            padding: 9px 18px;
+            background: var(--accent2); color: #001a0a;
+            border: none; border-radius: var(--radius);
+            font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;
+            letter-spacing: 0.06em; cursor: pointer; text-decoration: none;
+            transition: all 0.18s; white-space: nowrap; flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(0,212,107,0.2);
+        }
+        .btn-add-block:hover { background: var(--accent); transform: translateY(-1px); box-shadow: 0 4px 24px rgba(61,255,160,0.3); }
+
+        #content-area {
+            flex: 1; overflow-y: auto;
+            padding: 32px 40px 56px;
+            -webkit-overflow-scrolling: touch;
+        }
+        #content-area::-webkit-scrollbar { width: 5px; }
+        #content-area::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+
+        /* ── EMPTY STATE ── */
+        .empty-state {
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; height: 100%; min-height: 280px;
+            gap: 16px; color: var(--ink-faint); text-align: center;
+        }
+
+        .empty-state .molecule {
+            font-size: 3rem; line-height: 1; opacity: 0.15;
+            animation: moleculePulse 4s ease-in-out infinite;
+        }
+
+        @keyframes moleculePulse {
+            0%, 100% { opacity: 0.15; transform: scale(1); }
+            50% { opacity: 0.25; transform: scale(1.05); }
+        }
+
+        .empty-state p {
+            font-family: var(--font-mono); font-size: 0.75rem;
+            letter-spacing: 0.05em; max-width: 240px; line-height: 1.8;
+        }
+
+        /* ── CONTENT BLOCKS ── */
+        .block-wrapper {
+            position: relative; margin-bottom: 22px;
+            animation: blockIn 0.25s ease;
+        }
+
+        @keyframes blockIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .block-actions {
+            position: absolute; right: -2px; top: 50%;
+            transform: translateY(-50%);
+            display: none; flex-direction: column; gap: 2px;
+            background: var(--surface2); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 3px; z-index: 10;
+        }
+        .block-wrapper:hover .block-actions { display: flex; }
+
+        .block-paragraf {
+            font-family: var(--font-body);
+            font-size: 1.05rem; line-height: 1.9;
+            color: var(--ink); padding: 4px 0;
+        }
+
+        .block-header {
+            font-family: var(--font-display);
+            font-size: 1.4rem; font-weight: 700;
+            color: var(--ink); padding: 14px 0 8px;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 6px; letter-spacing: -0.02em;
+            position: relative;
+        }
+
+        .block-header::before {
+            content: '';
+            position: absolute; left: -40px; top: 50%; bottom: 0;
+            width: 3px; height: 70%;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            transform: translateY(-40%);
+        }
+
+        .block-latex {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent-dim);
+            border-radius: var(--radius);
+            padding: 18px 16px; overflow-x: auto; text-align: center;
+            position: relative;
+        }
+        .block-latex::before { content: 'FORMULA'; position: absolute; top: 6px; left: 10px; font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.14em; color: var(--accent-dim); }
+        .block-latex .katex-display { margin: 0; }
+
+        .block-embed { margin: 4px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); background: var(--surface2); }
+        .block-embed-header { display: flex; align-items: center; justify-content: space-between; padding: 7px 12px; background: var(--surface2); border-bottom: 1px solid var(--border); }
+        .block-embed-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-faint); letter-spacing: 0.07em; }
+        .block-embed-open { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-faint); text-decoration: none; padding: 2px 8px; border: 1px solid var(--border-light); border-radius: 4px; transition: all 0.12s; }
+        .block-embed-open:hover { color: var(--accent); border-color: var(--accent-dim); }
+        .block-embed iframe { width: 100%; border: none; display: block; }
+
+        .block-kode { margin: 4px 0; border-radius: 8px; overflow: hidden; border: 1px solid rgba(61,255,160,0.1); }
+        .block-kode-header { display: flex; align-items: center; justify-content: space-between; padding: 7px 12px; background: #0a1f14; border-bottom: 1px solid rgba(61,255,160,0.08); }
+        .block-kode-lang { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(61,255,160,0.45); letter-spacing: 0.1em; text-transform: uppercase; }
+        .block-kode-copy { background: transparent; border: 1px solid rgba(61,255,160,0.15); border-radius: 4px; color: rgba(61,255,160,0.4); font-family: var(--font-mono); font-size: 0.62rem; padding: 2px 8px; cursor: pointer; transition: all 0.12s; }
+        .block-kode-copy:hover { color: var(--accent); border-color: rgba(61,255,160,0.4); }
+        .block-kode pre { margin: 0; background: #0c1a10; font-size: 0.8rem; line-height: 1.65; }
+        .block-kode pre code { border-radius: 0; padding: 14px 16px; }
+
+        .block-latex-error { font-family: var(--font-mono); font-size: 0.8rem; color: var(--danger); }
+
+        .block-img { max-width: 100%; border-radius: var(--radius); border: 1px solid var(--border); display: block; }
+        .block-img-caption { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-faint); margin-top: 6px; font-style: italic; }
+
+        .block-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--accent); font-family: var(--font-mono); font-size: 0.8rem;
+            text-decoration: none; padding: 10px 16px;
+            background: var(--accent-glow);
+            border: 1px solid var(--accent-dim); border-radius: var(--radius);
+            transition: all 0.18s; word-break: break-all;
+        }
+        .block-link:hover { background: var(--accent-glow2); box-shadow: 0 0 16px rgba(61,255,160,0.12); }
+
+        /* ── FAB ── */
+        #fab-add {
+            display: none; position: fixed;
+            bottom: 24px; right: 20px;
+            width: 54px; height: 54px;
+            background: var(--accent2); color: #001a0a;
+            border: none; border-radius: 50%;
+            font-size: 1.5rem; font-weight: 700; line-height: 1;
+            cursor: pointer; text-decoration: none;
+            align-items: center; justify-content: center;
+            box-shadow: 0 4px 24px rgba(0,212,107,0.4);
+            z-index: 40; transition: transform 0.15s, background 0.15s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        #fab-add:active { transform: scale(0.9); }
+
+        /* ── MODAL ── */
+        #modal-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.8); z-index: 200;
+            display: none; align-items: flex-end; justify-content: center;
+            backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+        }
+        #modal-overlay.show { display: flex; }
+
+        #modal-box {
+            background: var(--surface2);
+            border: 1px solid var(--border-light);
+            border-top: 2px solid var(--accent-dim);
+            border-radius: 14px 14px 0 0;
+            padding: 28px 28px 32px; width: 100%; max-width: 480px;
+            animation: sheetUp 0.22s ease;
+        }
+        @keyframes sheetUp { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        #modal-box h3 { font-family: var(--font-display); font-size: 1.1rem; color: var(--ink); margin-bottom: 8px; }
+        #modal-box p { font-family: var(--font-body); font-size: 0.92rem; color: var(--ink-dim); margin-bottom: 22px; line-height: 1.65; }
+
+        .modal-actions { display: flex; gap: 10px; }
+        .btn-modal {
+            flex: 1; padding: 12px; border-radius: var(--radius);
+            font-family: var(--font-mono); font-size: 0.76rem;
+            cursor: pointer; border: 1px solid var(--border-light);
+            background: transparent; color: var(--ink-dim);
+            transition: all 0.12s; text-align: center;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .btn-modal:hover { background: var(--surface); }
+        .btn-modal.confirm { background: var(--danger); color: white; border-color: var(--danger); }
+
+        /* ── TOAST ── */
+        #toast {
+            position: fixed; bottom: 24px; right: 18px;
+            background: var(--surface3); border: 1px solid var(--border-light);
+            border-radius: var(--radius); padding: 10px 16px;
+            font-family: var(--font-mono); font-size: 0.74rem; color: var(--ink);
+            z-index: 300; opacity: 0; transform: translateY(8px);
+            transition: all 0.2s; pointer-events: none; max-width: calc(100vw - 36px);
+        }
+        #toast.show { opacity: 1; transform: translateY(0); }
+        #toast.success { border-color: var(--success); color: var(--success); }
+        #toast.error   { border-color: var(--danger);  color: var(--danger); }
+
+        .spinner {
+            width: 20px; height: 20px;
+            border: 2px solid var(--border-light);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            margin: 40px auto;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── TABLET ── */
+        @media (max-width: 860px) {
+            :root { --sidebar-w: 270px; }
+            #content-header { padding: 18px 24px 14px; }
+            #content-area   { padding: 22px 24px 60px; }
+            #content-title  { font-size: 1.35rem; }
+            .block-header::before { display: none; }
+        }
+
+        /* ── MOBILE ── */
+        @media (max-width: 640px) {
+            #mobile-topbar { display: flex; }
+            #content-header { display: none; }
+            body.sidebar-collapsed #sidebar { width: var(--sidebar-w); min-width: var(--sidebar-w); border-right-color: var(--border); }
+            #sidebar { position: fixed; top: 0; left: 0; height: 100%; transform: translateX(-100%); box-shadow: 8px 0 40px rgba(0,0,0,0.7); }
+            body.sidebar-open #sidebar { transform: translateX(0); }
+            body.sidebar-open #sidebar-backdrop { display: block; opacity: 1; }
+            #main { padding-top: var(--topbar-h); width: 100%; }
+            #content-area { padding: 16px 16px 92px; }
+            #btn-add-block { display: none !important; }
+            #fab-add { display: flex; }
+            .block-actions { position: static; transform: none; display: flex !important; flex-direction: row; justify-content: flex-end; background: transparent; border: none; padding: 8px 0 0; gap: 4px; }
+            .block-wrapper { border-bottom: 1px solid var(--border); padding-bottom: 14px; margin-bottom: 14px; }
+            .block-wrapper:last-child { border-bottom: none; }
+            .btn-icon { width: 36px; height: 36px; font-size: 0.88rem; }
+            .mk-actions { display: flex !important; }
+            .pertemuan-actions { display: flex !important; }
+            #toast { bottom: 88px; }
+            .sidebar-header { padding-top: 52px; }
+            .block-latex { padding: 12px 8px; }
+            .block-header { font-size: 1.15rem; }
+            .block-paragraf { font-size: 0.97rem; }
+        }
+
+        @supports (padding: max(0px)) {
+            #mobile-topbar { padding-top: max(0px, env(safe-area-inset-top)); height: calc(var(--topbar-h) + max(0px, env(safe-area-inset-top))); }
+            @media (max-width: 640px) {
+                #main { padding-top: calc(var(--topbar-h) + max(0px, env(safe-area-inset-top))); }
+                #fab-add { bottom: max(24px, calc(env(safe-area-inset-bottom) + 16px)); right: max(20px, env(safe-area-inset-right)); }
+                #content-area { padding-bottom: max(92px, calc(env(safe-area-inset-bottom) + 80px)); }
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- MOBILE TOPBAR -->
+<div id="mobile-topbar">
+    <button id="btn-hamburger" onclick="toggleSidebar()" aria-label="Buka menu">
+        <div class="ham-bar"></div>
+        <div class="ham-bar"></div>
+        <div class="ham-bar"></div>
+    </button>
+    <div id="mobile-title">Organic Lab</div>
+    <a id="btn-mob-add" href="#" class="btn-add-mob" style="display:none;" title="Tambah blok">＋</a>
+</div>
+
+<div id="sidebar-backdrop" onclick="closeSidebar()"></div>
+
+<div id="app">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                Organic<br>Lab
+                <span class="logo-sub">Catatan Perkuliahan</span>
+            </div>
+            <div class="molecule-formula">C₆H₅—CH₂—COOH</div>
+        </div>
+
+        <div class="sidebar-actions">
+            <a href="/editor?action=add_mk" class="btn-sidebar-action" onclick="closeSidebar()">+ Materi Kuliah</a>
+            <a href="/editor?action=add_pertemuan" class="btn-sidebar-action" onclick="closeSidebar()">+ Pertemuan</a>
+        </div>
+
+        <div id="search-wrap">
+            <div id="search-input-wrap">
+                <span id="search-icon">⌕</span>
+                <input id="search-input" type="search" placeholder="Cari senyawa, reaksi..." autocomplete="off"
+                       oninput="handleSearch(this.value)" onkeydown="if(event.key==='Escape')clearSearch()">
+                <button id="search-clear" onclick="clearSearch()" title="Hapus">✕</button>
+            </div>
+        </div>
+
+        <div id="search-results"></div>
+
+        <div id="mk-list">
+            <div class="spinner"></div>
+        </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main id="main">
+        <div id="content-header">
+            <button id="btn-toggle-sidebar" onclick="toggleDesktopSidebar()" title="Toggle Sidebar">
+                <span class="toggle-icon">‹</span>
+            </button>
+            <div class="content-title-group">
+                <div class="content-label">Pertemuan</div>
+                <div id="content-title">Pilih pertemuan di sidebar</div>
+                <div id="content-meta"></div>
+            </div>
+            <a id="btn-add-block" href="#" class="btn-add-block" style="display:none;">
+                ＋ Tambah Blok
+            </a>
+        </div>
+
+        <div id="content-area">
+            <div class="empty-state">
+                <div class="molecule">⬡</div>
+                <p>Pilih materi kuliah dan pertemuan dari sidebar untuk mulai membaca catatan</p>
+            </div>
+        </div>
+    </main>
+</div>
+
+<a id="fab-add" href="#" title="Tambah Blok Konten">＋</a>
+
+<div id="modal-overlay">
+    <div id="modal-box">
+        <h3>Konfirmasi Hapus</h3>
+        <p id="modal-text">Apakah Anda yakin ingin menghapus item ini?</p>
+        <div class="modal-actions">
+            <button class="btn-modal" onclick="closeModal()">Batal</button>
+            <button class="btn-modal confirm" id="modal-confirm-btn">Hapus</button>
+        </div>
+    </div>
+</div>
+
+<div id="toast"></div>
+
+
+<script>
+let appData = { mata_kuliah: [] };
+let currentMK   = null;
+let currentTopik = null;
+
+const isMobile = () => window.innerWidth <= 640;
+
+document.addEventListener("DOMContentLoaded", async () => {
+    restoreDesktopSidebarState();
+    await loadAllData();
+    const p = new URLSearchParams(window.location.search);
+    const mkP = p.get("mk"), topikP = p.get("topik");
+    if (mkP) {
+        const mk = appData.mata_kuliah.find(m => sanitize(m.namaMK) === mkP || m.namaMK === mkP);
+        if (mk) {
+            const pt = topikP
+                ? mk.pertemuan.find(p => sanitize(p.topik_pertemuan) === topikP || p.topik_pertemuan === topikP)
+                : mk.pertemuan[0];
+            if (pt) selectPertemuan(mk.namaMK, pt.topik_pertemuan, pt.tanggal_pertemuan || "");
+        }
+    }
+});
+
+function toggleSidebar() { document.body.classList.toggle("sidebar-open"); }
+function closeSidebar()  { document.body.classList.remove("sidebar-open"); }
+
+function toggleDesktopSidebar() {
+    const collapsed = document.body.classList.toggle("sidebar-collapsed");
+    localStorage.setItem("sidebarCollapsed", collapsed ? "1" : "0");
+}
+function restoreDesktopSidebarState() {
+    if (localStorage.getItem("sidebarCollapsed") === "1" && window.innerWidth > 640)
+        document.body.classList.add("sidebar-collapsed");
+}
+window.addEventListener("resize", () => { if (window.innerWidth > 640) closeSidebar(); });
+
+let _tx = 0;
+document.addEventListener("touchstart", e => { _tx = e.touches[0].clientX; }, { passive: true });
+document.addEventListener("touchend",   e => {
+    if (e.changedTouches[0].clientX - _tx < -60 && document.body.classList.contains("sidebar-open"))
+        closeSidebar();
+}, { passive: true });
+
+async function loadAllData() {
+    try {
+        appData = await (await fetch("/api/data")).json();
+        renderSidebar();
+    } catch { showToast("Gagal memuat data", "error"); }
+}
+
+function renderSidebar() {
+    const el = document.getElementById("mk-list");
+    if (!appData.mata_kuliah?.length) {
+        el.innerHTML = `<div style="padding:24px 16px;text-align:center;">
+            <p style="font-family:var(--font-mono);font-size:0.7rem;color:var(--ink-faint);line-height:1.8;">
+                Belum ada materi kuliah.<br>Ketuk "+ Materi Kuliah".
+            </p></div>`;
+        return;
+    }
+    el.innerHTML = appData.mata_kuliah.map(mk => {
+        const act = mk.namaMK === currentMK;
+        const pts = mk.pertemuan.map(pt => {
+            const actPt = pt.topik_pertemuan === currentTopik && mk.namaMK === currentMK;
+            return `<div class="pertemuan-item ${actPt?"active":""}"
+                onclick="selectPertemuan('${escA(mk.namaMK)}','${escA(pt.topik_pertemuan)}','${escA(pt.tanggal_pertemuan||"")}')">
+                <div class="pertemuan-dot"></div>
+                <span class="pertemuan-name">${esc(pt.topik_pertemuan)}</span>
+                <div class="pertemuan-actions">
+                    <a class="btn-icon" href="/editor?action=edit_pertemuan&mk=${enc(mk.namaMK)}&id=${pt.id}"
+                       onclick="event.stopPropagation()" title="Edit">✎</a>
+                    <button class="btn-icon danger"
+                        onclick="event.stopPropagation();confirmDelPertemuan('${escA(mk.namaMK)}',${pt.id},'${escA(pt.topik_pertemuan)}')"
+                        title="Hapus">✕</button>
+                </div>
+            </div>`;
+        }).join("") + `
+            <div style="padding:4px 16px 10px 34px;">
+                <a href="/editor?action=add_pertemuan&mk=${enc(mk.namaMK)}"
+                   style="font-family:var(--font-mono);font-size:0.65rem;color:var(--ink-faint);
+                          text-decoration:none;display:inline-flex;align-items:center;gap:5px;padding:4px 0;"
+                   onmouseover="this.style.color='var(--accent)'"
+                   onmouseout="this.style.color='var(--ink-faint)'">+ pertemuan baru</a>
+            </div>`;
+        return `<div class="mk-item" id="mk-item-${sanitize(mk.namaMK)}">
+            <div class="mk-header ${act?"active open":""}" onclick="toggleMK('${escA(mk.namaMK)}',this)">
+                <div class="mk-atom"></div>
+                <span class="mk-toggle">▶</span>
+                <span class="mk-name">${esc(mk.namaMK)}</span>
+                <div class="mk-actions">
+                    <a class="btn-icon" href="/editor?action=edit_mk&id=${mk.id}"
+                       onclick="event.stopPropagation()" title="Edit">✎</a>
+                    <button class="btn-icon danger"
+                        onclick="event.stopPropagation();confirmDelMK(${mk.id},'${escA(mk.namaMK)}')"
+                        title="Hapus">✕</button>
+                </div>
+            </div>
+            <div class="pertemuan-list ${act?"open":""}">${pts}</div>
+        </div>`;
+    }).join("");
+}
+
+function toggleMK(name, hdr) {
+    const open = hdr.classList.contains("open");
+    document.querySelectorAll(".mk-header.open").forEach(h => {
+        if (h !== hdr) { h.classList.remove("open"); h.nextElementSibling.classList.remove("open"); }
+    });
+    hdr.classList.toggle("open", !open);
+    hdr.nextElementSibling.classList.toggle("open", !open);
+}
+
+async function selectPertemuan(namaMK, topik, tanggal) {
+    currentMK = namaMK; currentTopik = topik;
+    const addUrl = `/editor?action=add_element&mk=${enc(namaMK)}&topik=${enc(topik)}`;
+    document.getElementById("content-title").textContent = topik;
+    document.getElementById("content-meta").textContent  = `${namaMK}${tanggal?" · "+formatDate(tanggal):""}`;
+    const btnD = document.getElementById("btn-add-block");
+    btnD.style.display = "flex"; btnD.href = addUrl;
+    document.getElementById("mobile-title").textContent = topik;
+    const btnM = document.getElementById("btn-mob-add");
+    btnM.style.display = "flex"; btnM.href = addUrl;
+    document.getElementById("fab-add").href = addUrl;
+    if (isMobile()) closeSidebar();
+    renderSidebar();
+    const mkH = document.querySelector(`#mk-item-${sanitize(namaMK)} .mk-header`);
+    if (mkH && !mkH.classList.contains("open")) {
+        mkH.classList.add("open"); mkH.nextElementSibling.classList.add("open");
+    }
+    const mk = appData.mata_kuliah.find(m => m.namaMK === namaMK);
+    const pt = mk?.pertemuan.find(p => p.topik_pertemuan === topik);
+    renderBlocks(pt?.elements || [], namaMK, topik);
+}
+
+function renderBlocks(elements, namaMK, topik) {
+    const area = document.getElementById("content-area");
+    if (!elements?.length) {
+        area.innerHTML = `<div class="empty-state">
+            <div class="molecule">⬡</div>
+            <p>Belum ada catatan.<br>Ketuk ＋ untuk menambah blok konten.</p>
+        </div>`;
+        return;
+    }
+    area.innerHTML = elements.map(el => `
+        <div class="block-wrapper" data-id="${el.id}">
+            ${blockHTML(el)}
+            <div class="block-actions">
+                <a class="btn-icon" title="Edit"
+                   href="/editor?action=edit_element&mk=${enc(namaMK)}&topik=${enc(topik)}&id=${el.id}">✎</a>
+                <button class="btn-icon danger" title="Hapus"
+                        onclick="confirmDelEl(${el.id},'${escA(namaMK)}','${escA(topik)}')">✕</button>
+            </div>
+        </div>`).join("");
+    renderLatex();
+    if (typeof hljs !== "undefined")
+        document.querySelectorAll(".block-kode pre code").forEach(el => hljs.highlightElement(el));
+}
+
+function blockHTML(el) {
+    switch (el.block_type) {
+        case "paragraf": return `<div class="block-paragraf">${esc(el.content).replace(/\n/g,"<br>")}</div>`;
+        case "header":   return `<div class="block-header">${esc(el.content)}</div>`;
+        case "latex":    return `<div class="block-latex" data-latex="${escA(el.content)}">
+                                    <span style="color:var(--ink-faint);font-size:0.8rem">${esc(el.content)}</span>
+                                 </div>`;
+        case "img": {
+            if (!el.content) return `<p style="color:var(--ink-faint);font-family:var(--font-mono);font-size:0.8rem">[Gambar tidak tersedia]</p>`;
+            const src = el.content.startsWith("http") ? el.content : "/" + el.content;
+            return `<div>
+                <img src="${escA(src)}" alt="${escA(el.alt_text||"")}" class="block-img" loading="lazy" onerror="this.style.opacity='0.3'">
+                ${el.alt_text?`<div class="block-img-caption">${esc(el.alt_text)}</div>`:""}
+            </div>`;
+        }
+        case "embed": {
+            if (!el.content) return `<p style="color:var(--ink-faint);font-family:var(--font-mono);font-size:0.8rem">[Embed tidak tersedia]</p>`;
+            let embedUrl = "", height = 400, label = "Embed", openUrl = "";
+            try {
+                const p = JSON.parse(el.content);
+                height = p.height || 400;
+                if (p.mode === "code" && p.src) { embedUrl = p.src; label = p.label || "Embed"; openUrl = p.src; }
+                else if (p.url) { const r = resolveEmbedUrl(p.url); embedUrl = r ? r.embedUrl : p.url; label = r ? r.label : "Website"; openUrl = p.url; }
+            } catch { const r = resolveEmbedUrl(el.content); embedUrl = r ? r.embedUrl : el.content; label = r ? r.label : "Website"; openUrl = el.content; }
+            if (!embedUrl) return `<p style="color:var(--ink-faint);font-family:var(--font-mono);font-size:0.8rem">[Embed tidak tersedia]</p>`;
+            return `<div class="block-embed">
+                <div class="block-embed-header">
+                    <span class="block-embed-label">⊞ ${esc(label)}</span>
+                    <a href="${escA(openUrl)}" target="_blank" rel="noopener" class="block-embed-open">↗ Buka</a>
+                </div>
+                <iframe src="${escA(embedUrl)}" height="${height}" allowfullscreen
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    loading="lazy"></iframe>
+            </div>`;
+        }
+        case "kode": {
+            let lang = "plaintext", code = el.content || "";
+            try { const p = JSON.parse(el.content); if (p.lang && p.code !== undefined) { lang = p.lang; code = p.code; } } catch {}
+            const codeId = "kode-" + Math.random().toString(36).slice(2,8);
+            return `<div class="block-kode">
+                <div class="block-kode-header">
+                    <span class="block-kode-lang">${esc(lang)}</span>
+                    <button class="block-kode-copy" onclick="copyKode('${codeId}')">Salin</button>
+                </div>
+                <pre><code id="${codeId}" class="language-${esc(lang)}">${esc(code)}</code></pre>
+            </div>`;
+        }
+        case "link": return `<a href="${escA(el.content)}" target="_blank" rel="noopener" class="block-link">↗ ${esc(el.content)}</a>`;
+        default: return `<div class="block-paragraf">${esc(el.content||"")}</div>`;
+    }
+}
+
+function resolveEmbedUrl(u) {
+    if (!u) return null;
+    try { new URL(u); } catch { return null; }
+    const yt = u.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+    if (yt) { const t = new URLSearchParams(new URL(u).search).get("t") || ""; return { embedUrl: `https://www.youtube.com/embed/${yt[1]}${t?"?start="+t:""}`, label: "YouTube" }; }
+    const vimeo = u.match(/vimeo\.com\/(\d+)/);
+    if (vimeo) return { embedUrl: `https://player.vimeo.com/video/${vimeo[1]}`, label: "Vimeo" };
+    const gd = u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=)([A-Za-z0-9_-]+)/);
+    if (gd) return { embedUrl: `https://drive.google.com/file/d/${gd[1]}/preview`, label: "Google Drive" };
+    const gdoc = u.match(/docs\.google\.com\/(document|spreadsheets|presentation|forms)\/d\/([A-Za-z0-9_-]+)/);
+    if (gdoc) { const labels = { document:"Google Docs", spreadsheets:"Google Sheets", presentation:"Google Slides", forms:"Google Forms" }; return { embedUrl: `https://docs.google.com/${gdoc[1]}/d/${gdoc[2]}/preview`, label: labels[gdoc[1]] || "Google" }; }
+    if (u.includes("google.com/maps")) { if (u.includes("/maps/embed")) return { embedUrl: u, label: "Google Maps" }; return { embedUrl: `https://maps.google.com/maps?q=${encodeURIComponent(u)}&output=embed`, label: "Google Maps" }; }
+    if (u.includes("figma.com")) return { embedUrl: `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(u)}`, label: "Figma" };
+    if (u.includes("canva.com")) return { embedUrl: u.includes("/view") ? u.replace("/view","/embed") : u, label: "Canva" };
+    const sp = u.match(/open\.spotify\.com\/(track|album|playlist|episode|show)\/([A-Za-z0-9]+)/);
+    if (sp) return { embedUrl: `https://open.spotify.com/embed/${sp[1]}/${sp[2]}`, label: "Spotify" };
+    if (u.includes("soundcloud.com")) return { embedUrl: `https://w.soundcloud.com/player/?url=${encodeURIComponent(u)}&color=%233dffa0&auto_play=false`, label: "SoundCloud" };
+    if (u.match(/(?:twitter|x)\.com\/\w+\/status\/\d+/)) return { embedUrl: `https://twitframe.com/show?url=${encodeURIComponent(u)}`, label: "Twitter / X" };
+    if (u.includes("sharepoint.com") || u.includes("1drv.ms") || u.includes("office.com")) return { embedUrl: `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(u)}`, label: "Office Online" };
+    if (u.includes("padlet.com")) return { embedUrl: u.includes("/embed") ? u : u.replace(/\/?$/, "/embed"), label: "Padlet" };
+    const loom = u.match(/loom\.com\/share\/([A-Za-z0-9]+)/);
+    if (loom) return { embedUrl: `https://www.loom.com/embed/${loom[1]}`, label: "Loom" };
+    return { embedUrl: u, label: "Website" };
+}
+
+function renderLatex() {
+    document.querySelectorAll(".block-latex[data-latex]").forEach(el => {
+        const code = el.getAttribute("data-latex");
+        if (!code || typeof katex === "undefined") return;
+        try { el.innerHTML = ""; katex.render(code, el, { displayMode: true, throwOnError: false }); }
+        catch (e) { el.innerHTML = `<span class="block-latex-error">LaTeX error: ${esc(e.message)}</span>`; }
+    });
+}
+
+function confirmDelEl(id, mk, topik) {
+    showModal("Hapus blok ini? Jika gambar, file-nya akan ikut dihapus secara permanen.", async () => {
+        try {
+            const r = await fetch("/api/delete", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ type:"element", namaMK:mk, topik, id }) });
+            if ((await r.json()).success) {
+                const el = document.querySelector(`.block-wrapper[data-id="${id}"]`);
+                if (el) { el.style.opacity="0"; el.style.transition="opacity 0.15s"; setTimeout(()=>el.remove(),150); }
+                const m = appData.mata_kuliah.find(m=>m.namaMK===mk);
+                const p = m?.pertemuan.find(p=>p.topik_pertemuan===topik);
+                if (p) p.elements = p.elements.filter(e=>e.id!==id);
+                if (!document.querySelectorAll(".block-wrapper").length) renderBlocks([], mk, topik);
+                showToast("Blok dihapus ✓","success");
+            }
+        } catch { showToast("Gagal menghapus","error"); }
+    });
+}
+
+function confirmDelPertemuan(mk, id, topik) {
+    showModal(`Hapus pertemuan "${topik}"? Semua catatannya akan hilang.`, async () => {
+        await fetch("/api/delete",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({type:"pertemuan",namaMK:mk,id})});
+        await loadAllData();
+        if (currentTopik===topik) resetView();
+        showToast("Pertemuan dihapus ✓","success");
+    });
+}
+
+function confirmDelMK(id, mk) {
+    showModal(`Hapus materi kuliah "${mk}"? Semua pertemuan dan catatan akan hilang.`, async () => {
+        await fetch("/api/delete",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({type:"mk",id})});
+        await loadAllData();
+        if (currentMK===mk) resetView();
+        showToast("Mata kuliah dihapus ✓","success");
+    });
+}
+
+function resetView() {
+    currentMK = null; currentTopik = null;
+    document.getElementById("content-title").textContent  = "Pilih pertemuan di sidebar";
+    document.getElementById("content-meta").textContent   = "";
+    document.getElementById("mobile-title").textContent   = "Organic Lab";
+    document.getElementById("btn-add-block").style.display = "none";
+    document.getElementById("btn-mob-add").style.display   = "none";
+    document.getElementById("fab-add").href = "#";
+    document.getElementById("content-area").innerHTML = `
+        <div class="empty-state">
+            <div class="molecule">⬡</div>
+            <p>Pilih materi kuliah dan pertemuan dari sidebar untuk mulai membaca catatan</p>
+        </div>`;
+}
+
+function showModal(text, onConfirm) {
+    document.getElementById("modal-text").textContent = text;
+    document.getElementById("modal-overlay").classList.add("show");
+    document.getElementById("modal-confirm-btn").onclick = () => { closeModal(); onConfirm(); };
+}
+function closeModal() { document.getElementById("modal-overlay").classList.remove("show"); }
+document.getElementById("modal-overlay").addEventListener("click", e => {
+    if (e.target === document.getElementById("modal-overlay")) closeModal();
+});
+function showToast(msg, type="info") {
+    const t = document.getElementById("toast");
+    t.textContent = msg; t.className = `show ${type}`;
+    clearTimeout(window._tt);
+    window._tt = setTimeout(() => t.className = "", 3000);
+}
+
+function sanitize(s) { return (s||"").replace(/\s+/g,"_"); }
+function enc(s) { return encodeURIComponent(s||""); }
+function formatDate(d) {
+    try { return new Date(d).toLocaleDateString("id-ID",{day:"numeric",month:"long",year:"numeric"}); }
+    catch { return d; }
+}
+function esc(s) { return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;"); }
+function escA(s) { return esc(s); }
+function copyKode(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    navigator.clipboard.writeText(el.textContent).then(() => showToast("Kode disalin ✓")).catch(() => showToast("Gagal menyalin", "error"));
+}
+
+let searchTimeout = null;
+function handleSearch(val) {
+    const clearBtn = document.getElementById("search-clear");
+    clearBtn.style.display = val ? "block" : "none";
+    clearTimeout(searchTimeout);
+    if (!val.trim()) { showSearchResults(false); return; }
+    searchTimeout = setTimeout(() => doSearch(val.trim()), 280);
+}
+async function doSearch(q) {
+    const panel = document.getElementById("search-results");
+    panel.innerHTML = '<div class="search-empty">Mencari…</div>';
+    showSearchResults(true);
+    try {
+        const res = await fetch("/api/search?q=" + encodeURIComponent(q));
+        const data = await res.json();
+        renderSearchResults(data.results, q);
+    } catch { panel.innerHTML = '<div class="search-empty">Gagal mencari. Coba lagi.</div>'; }
+}
+function renderSearchResults(results, q) {
+    const panel = document.getElementById("search-results");
+    if (!results.length) { panel.innerHTML = `<div class="search-empty">Tidak ada hasil untuk<br>"${esc(q)}"</div>`; return; }
+    const typeLabel = { "mata_kuliah":"MK","topik":"Topik","paragraf":"Paragraf","img":"Gambar","kode":"Kode","judul":"Judul","video":"Video","rumus":"Rumus" };
+    panel.innerHTML = results.map((r,i) => {
+        const snippet = r.snippet ? hlSnippet(esc(r.snippet), esc(q)) : "";
+        const label = typeLabel[r.match_type] || r.match_type;
+        return `<div class="search-result-item" onclick="jumpToResult('${escA(r.namaMK)}','${escA(r.topik||"")}','${escA(r.tanggal||"")}',${r.element_id||"null"})">
+            <div class="search-result-mk">${esc(r.namaMK)}</div>
+            ${r.topik ? `<div class="search-result-topik">${esc(r.topik)}</div>` : ""}
+            <span class="search-result-type">${label}</span>
+            ${snippet ? `<div class="search-result-snippet">${snippet}</div>` : ""}
+        </div>`;
+    }).join("");
+}
+function hlSnippet(html, q) {
+    const re = new RegExp("(" + q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&") + ")", "gi");
+    return html.replace(re, "<mark class=\"hl\">$1</mark>");
+}
+async function jumpToResult(namaMK, topik, tanggal, elementId) {
+    clearSearch();
+    if (!topik) { await loadAllData(); const mkH = document.querySelector(`#mk-item-${sanitize(namaMK)} .mk-header`); if (mkH && !mkH.classList.contains("open")) mkH.click(); return; }
+    await selectPertemuan(namaMK, topik, tanggal);
+    if (elementId) { setTimeout(() => { const el = document.querySelector(`.block-wrapper[data-id="${elementId}"]`); if (el) { el.scrollIntoView({ behavior: "smooth", block: "center" }); el.style.outline = "2px solid var(--accent)"; setTimeout(() => el.style.outline = "", 1800); } }, 120); }
+}
+function clearSearch() {
+    const inp = document.getElementById("search-input");
+    inp.value = "";
+    document.getElementById("search-clear").style.display = "none";
+    showSearchResults(false);
+}
+function showSearchResults(show) {
+    document.getElementById("search-results").style.display = show ? "block" : "none";
+    document.getElementById("mk-list").style.display       = show ? "none"  : "block";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor — Organic Lab</title>
+
+    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg:           #08100d;
+            --surface:      #0d1a14;
+            --surface2:     #122019;
+            --surface3:     #162a1f;
+            --border:       #1e3528;
+            --border-light: #2a4a38;
+            --ink:          #d4edd8;
+            --ink-dim:      #7aaa88;
+            --ink-faint:    #3d6b4a;
+            --accent:       #3dffa0;
+            --accent2:      #00d46b;
+            --accent-dim:   #1a7a4a;
+            --accent-glow:  rgba(61,255,160,0.07);
+            --accent-glow2: rgba(61,255,160,0.14);
+            --danger:       #ff5566;
+            --success:      #3dffa0;
+            --radius:       8px;
+            --font-display: 'Syne', sans-serif;
+            --font-body:    'Crimson Pro', Georgia, serif;
+            --font-mono:    'Space Mono', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--font-body);
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+        }
+
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background:
+                radial-gradient(ellipse 60% 40% at 15% 85%, rgba(0,80,40,0.2) 0%, transparent 65%),
+                radial-gradient(ellipse 40% 50% at 85% 15%, rgba(0,50,60,0.15) 0%, transparent 65%);
+            pointer-events: none; z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='104' viewBox='0 0 60 104'%3E%3Cpath d='M30 2 L58 17 L58 47 L30 62 L2 47 L2 17Z' fill='none' stroke='rgba(61,255,160,0.035)' stroke-width='0.8'/%3E%3Cpath d='M30 62 L58 77 L58 107 L30 122 L2 107 L2 77Z' fill='none' stroke='rgba(61,255,160,0.035)' stroke-width='0.8'/%3E%3C/svg%3E");
+            background-size: 60px 104px;
+            pointer-events: none; z-index: 0; opacity: 0.7;
+        }
+
+        .topbar {
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px 32px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(13,26,20,0.95);
+            backdrop-filter: blur(10px);
+            position: relative; z-index: 2;
+        }
+
+        .back-link {
+            display: flex; align-items: center; gap: 6px;
+            color: var(--ink-dim); font-family: var(--font-mono);
+            font-size: 0.7rem; text-decoration: none; letter-spacing: 0.04em;
+            padding: 6px 10px; border-radius: var(--radius);
+            border: 1px solid var(--border); transition: all 0.18s;
+        }
+        .back-link:hover { border-color: var(--accent-dim); color: var(--accent); box-shadow: 0 0 10px rgba(61,255,160,0.1); }
+
+        .topbar-title {
+            font-family: var(--font-mono); font-size: 0.65rem;
+            letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint);
+        }
+
+        .editor-container {
+            flex: 1; display: flex; align-items: flex-start; justify-content: center;
+            padding: 40px 20px 60px; position: relative; z-index: 1;
+        }
+
+        .editor-card {
+            background: rgba(13,26,20,0.92);
+            border: 1px solid var(--border);
+            border-top: 2px solid var(--accent-dim);
+            border-radius: 12px; padding: 36px 40px;
+            width: 100%; max-width: 660px;
+            backdrop-filter: blur(8px);
+            animation: slideUp 0.25s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(61,255,160,0.03);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(14px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .editor-heading {
+            font-family: var(--font-display); font-size: 1.65rem;
+            font-weight: 700; color: var(--ink); margin-bottom: 5px;
+            letter-spacing: -0.02em;
+        }
+
+        .editor-subheading {
+            font-family: var(--font-mono); font-size: 0.68rem;
+            color: var(--ink-faint); letter-spacing: 0.08em; margin-bottom: 32px;
+        }
+
+        .form-group { margin-bottom: 20px; }
+
+        label {
+            display: block; font-family: var(--font-mono);
+            font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--ink-faint); margin-bottom: 7px;
+        }
+
+        input[type="text"],
+        input[type="url"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%; background: rgba(8,16,13,0.8);
+            border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 10px 14px; color: var(--ink);
+            font-family: var(--font-mono); font-size: 0.82rem;
+            outline: none; transition: all 0.18s; appearance: none;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--accent-dim);
+            box-shadow: 0 0 0 3px rgba(61,255,160,0.08);
+        }
+        textarea { min-height: 140px; resize: vertical; line-height: 1.65; }
+        select option { background: var(--surface2); }
+
+        .file-input-wrapper { position: relative; }
+        input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+        .file-label {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 14px; background: rgba(8,16,13,0.8);
+            border: 1px dashed var(--border-light); border-radius: var(--radius);
+            cursor: pointer; transition: all 0.18s; font-family: var(--font-mono);
+            font-size: 0.8rem; color: var(--ink-dim);
+        }
+        .file-label:hover { border-color: var(--accent-dim); color: var(--accent); }
+        .file-label.has-file { border-color: var(--success); color: var(--success); }
+
+        .block-type-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+        .block-type-option { display: none; }
+        .block-type-label {
+            display: flex; flex-direction: column; align-items: center; gap: 5px;
+            padding: 10px 4px; background: rgba(8,16,13,0.6);
+            border: 1px solid var(--border); border-radius: var(--radius);
+            cursor: pointer; transition: all 0.18s; text-align: center;
+        }
+        .block-type-label .icon { font-size: 1.1rem; line-height: 1; }
+        .block-type-label .label { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); }
+        .block-type-option:checked + .block-type-label { background: var(--accent-glow2); border-color: var(--accent-dim); box-shadow: 0 0 12px rgba(61,255,160,0.1); }
+        .block-type-option:checked + .block-type-label .label { color: var(--accent); }
+        .block-type-label:hover { border-color: var(--border-light); }
+
+        .input-area { display: none; }
+        .input-area.active { display: block; }
+
+        /* Quill */
+        .ql-toolbar.ql-snow { background: var(--surface2); border-color: var(--border) !important; border-radius: var(--radius) var(--radius) 0 0; }
+        .ql-container.ql-snow { background: rgba(8,16,13,0.8); border-color: var(--border) !important; border-radius: 0 0 var(--radius) var(--radius); font-family: var(--font-body) !important; font-size: 0.95rem !important; color: var(--ink); min-height: 120px; }
+        .ql-snow .ql-stroke { stroke: var(--ink-dim) !important; }
+        .ql-snow .ql-fill  { fill:  var(--ink-dim) !important; }
+        .ql-snow .ql-picker-label { color: var(--ink-dim) !important; }
+        .ql-editor { color: var(--ink) !important; }
+
+        .latex-preview {
+            margin-top: 10px; padding: 16px 20px;
+            background: var(--surface2); border: 1px solid var(--border);
+            border-left: 3px solid var(--accent-dim); border-radius: var(--radius);
+            min-height: 52px; text-align: center; font-family: var(--font-mono);
+            font-size: 0.75rem; color: var(--ink-faint);
+            position: relative;
+        }
+        .latex-preview::before { content: 'FORMULA PREVIEW'; position: absolute; top: 6px; left: 10px; font-size: 0.5rem; letter-spacing: 0.14em; color: var(--accent-dim); }
+
+        .img-source-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
+        .img-tab-btn { padding: 6px 14px; background: transparent; border: 1px solid var(--border); border-radius: var(--radius); font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em; color: var(--ink-dim); cursor: pointer; transition: all 0.15s; }
+        .img-tab-btn.active { background: var(--accent-glow2); border-color: var(--accent-dim); color: var(--accent); }
+        .img-panel { display: none; }
+        .img-panel.active { display: block; }
+        #img-preview { max-width: 100%; max-height: 200px; border-radius: var(--radius); border: 1px solid var(--border); display: none; margin-top: 10px; }
+
+        .clipboard-drop-zone { border: 2px dashed var(--border); border-radius: var(--radius); padding: 28px 16px; text-align: center; cursor: pointer; transition: all 0.18s; }
+        .clipboard-drop-zone.drag-over  { border-color: var(--accent); background: var(--accent-glow); }
+        .clipboard-drop-zone.has-image  { border-color: var(--accent-dim); background: var(--accent-glow); }
+        .clipboard-drop-zone__icon      { font-size: 2rem; margin-bottom: 8px; display: block; opacity: 0.5; }
+        .clipboard-drop-zone__hint      { font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faint); line-height: 1.5; }
+        .clipboard-drop-zone__hint kbd  { display: inline-block; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; font-size: 0.7rem; color: var(--ink-dim); }
+        .clipboard-clear-btn { margin-top: 8px; background: transparent; border: 1px solid var(--border-light); border-radius: var(--radius); color: var(--ink-faint); font-family: var(--font-mono); font-size: 0.68rem; padding: 4px 10px; cursor: pointer; transition: all 0.12s; display: none; }
+        .clipboard-clear-btn:hover { color: var(--danger); border-color: var(--danger); }
+        .clipboard-clear-btn.visible { display: inline-block; }
+
+        .upload-status { display: none; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faint); margin-top: 6px; }
+        .upload-status.show { display: block; }
+        .upload-status.ok  { color: var(--success); }
+        .upload-status.err { color: var(--danger); }
+
+        .code-editor-wrap { border: 1px solid rgba(61,255,160,0.15); border-radius: var(--radius); overflow: hidden; background: #0a1f14; }
+        .code-lang-bar { display: flex; align-items: center; justify-content: space-between; padding: 6px 12px; background: #061410; border-bottom: 1px solid rgba(61,255,160,0.1); gap: 8px; }
+        .code-lang-select { background: transparent; border: 1px solid rgba(61,255,160,0.15); border-radius: 4px; color: rgba(61,255,160,0.7); font-family: var(--font-mono); font-size: 0.68rem; padding: 3px 8px; cursor: pointer; outline: none; }
+        .code-lang-select:focus { border-color: var(--accent-dim); }
+        .code-lang-select option { background: #0a1f14; }
+        .code-lang-label { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(61,255,160,0.25); letter-spacing: 0.1em; }
+        #input-kode { width: 100%; min-height: 180px; background: #0a1f14; color: #8de8b0; font-family: var(--font-mono); font-size: 0.82rem; line-height: 1.65; border: none; outline: none; padding: 14px 16px; resize: vertical; tab-size: 4; }
+        #input-kode::placeholder { color: rgba(61,255,160,0.2); }
+        .kode-preview-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-faint); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 14px; margin-bottom: 6px; }
+        .kode-preview-wrap { border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(61,255,160,0.12); display: none; }
+        .kode-preview-wrap.visible { display: block; }
+        .kode-preview-wrap pre { margin: 0; font-size: 0.8rem; line-height: 1.6; }
+        .kode-preview-wrap pre code { border-radius: 0; padding: 14px 16px; }
+
+        .embed-mode-tabs { display: flex; gap: 4px; margin-bottom: 14px; border-bottom: 1px solid var(--border); }
+        .embed-mode-tab { padding: 6px 14px; background: transparent; border: 1px solid transparent; border-bottom: none; border-radius: var(--radius) var(--radius) 0 0; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.05em; color: var(--ink-faint); cursor: pointer; transition: all 0.12s; position: relative; bottom: -1px; }
+        .embed-mode-tab.active { background: rgba(13,26,20,0.92); border-color: var(--border); border-bottom-color: rgba(13,26,20,0.92); color: var(--accent); }
+        .embed-mode-panel { display: none; }
+        .embed-mode-panel.active { display: block; }
+
+        .embed-type-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 14px; }
+        .embed-type-btn { padding: 8px 6px; background: transparent; border: 1px solid var(--border); border-radius: var(--radius); font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-dim); cursor: pointer; text-align: center; transition: all 0.12s; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .embed-type-btn .e-icon  { font-size: 1.1rem; }
+        .embed-type-btn .e-label { font-size: 0.6rem; letter-spacing: 0.04em; }
+        .embed-type-btn:hover, .embed-type-btn.active { background: var(--accent-glow2); border-color: var(--accent-dim); color: var(--accent); }
+
+        .embed-hint { font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-faint); margin-bottom: 10px; line-height: 1.5; }
+        .embed-url-input-wrap { position: relative; }
+        .embed-url-input-wrap input { padding-right: 90px; }
+        .embed-detect-badge { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 4px; background: var(--accent-glow2); border: 1px solid var(--accent-dim); color: var(--accent); pointer-events: none; display: none; }
+        .embed-detect-badge.visible { display: block; }
+        .embed-height-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+        .embed-height-row label { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-faint); white-space: nowrap; margin: 0; }
+        .embed-height-row input[type="range"] { flex: 1; accent-color: var(--accent); }
+        .embed-height-val { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-dim); min-width: 36px; }
+        .embed-preview-wrap { margin-top: 12px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); display: none; background: var(--surface2); }
+        .embed-preview-wrap.visible { display: block; }
+        .embed-preview-wrap iframe  { width: 100%; height: 220px; border: none; display: block; }
+        .embed-preview-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-faint); letter-spacing: 0.07em; padding: 6px 10px; background: var(--surface2); border-top: 1px solid var(--border); }
+
+        .embed-code-wrap { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: rgba(8,16,13,0.8); }
+        .embed-code-bar { display: flex; align-items: center; justify-content: space-between; padding: 6px 12px; background: var(--surface2); border-bottom: 1px solid var(--border); }
+        .embed-code-bar-label { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.1em; }
+        .embed-code-paste-btn { background: transparent; border: 1px solid var(--border-light); border-radius: 4px; color: var(--ink-dim); font-family: var(--font-mono); font-size: 0.62rem; padding: 2px 8px; cursor: pointer; transition: all 0.12s; }
+        .embed-code-paste-btn:hover { color: var(--accent); border-color: var(--accent-dim); }
+        #embed-custom-code { width: 100%; min-height: 100px; background: transparent; border: none; outline: none; color: var(--ink-dim); font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.6; padding: 10px 12px; resize: vertical; }
+        #embed-custom-code::placeholder { color: var(--ink-faint); }
+        .embed-code-status { font-family: var(--font-mono); font-size: 0.68rem; margin-top: 6px; min-height: 18px; transition: color 0.15s; }
+        .embed-code-status.ok  { color: var(--success); }
+        .embed-code-status.err { color: var(--danger); }
+        .embed-code-status.dim { color: var(--ink-faint); }
+
+        .form-actions { display: flex; gap: 10px; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border); }
+        .btn-submit {
+            flex: 1; padding: 12px;
+            background: var(--accent2); color: #001a0a;
+            border: none; border-radius: var(--radius);
+            font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700;
+            letter-spacing: 0.07em; cursor: pointer; transition: all 0.18s;
+            box-shadow: 0 0 20px rgba(0,212,107,0.15);
+        }
+        .btn-submit:hover  { background: var(--accent); transform: translateY(-1px); box-shadow: 0 4px 24px rgba(61,255,160,0.25); }
+        .btn-submit:active { transform: translateY(0); }
+        .btn-cancel { padding: 12px 20px; background: transparent; border: 1px solid var(--border-light); border-radius: var(--radius); color: var(--ink-dim); font-family: var(--font-mono); font-size: 0.8rem; cursor: pointer; text-decoration: none; display: flex; align-items: center; transition: all 0.15s; }
+        .btn-cancel:hover { background: var(--surface2); color: var(--ink); }
+
+        @media (max-width: 720px) {
+            .topbar { padding: 12px 20px; }
+            .editor-container { padding: 24px 16px 48px; }
+            .editor-card { padding: 28px 24px; }
+        }
+        @media (max-width: 520px) {
+            .topbar { padding: 10px 14px; position: sticky; top: 0; z-index: 10; }
+            .editor-container { padding: 16px 0 60px; align-items: stretch; }
+            .editor-card { padding: 22px 18px 28px; border-radius: 0; border-left: none; border-right: none; max-width: 100%; }
+            .editor-heading { font-size: 1.4rem; }
+            .block-type-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .block-type-label { padding: 12px 4px; }
+            input[type="text"], input[type="url"], input[type="date"], select, textarea { padding: 12px 14px; font-size: 16px; }
+            .form-actions { flex-direction: column-reverse; gap: 8px; }
+            .btn-submit { padding: 14px; font-size: 0.85rem; }
+            .btn-cancel { padding: 12px; text-align: center; justify-content: center; }
+        }
+        @supports (padding: max(0px)) {
+            @media (max-width: 520px) {
+                .topbar { padding-top: max(10px, env(safe-area-inset-top)); }
+                .editor-container { padding-bottom: max(60px, calc(env(safe-area-inset-bottom) + 40px)); }
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <a href="/" class="back-link">← Kembali</a>
+    <span class="topbar-title">
+        {% if action == "add_mk" %}Tambah Materi Kuliah
+        {% elif action == "edit_mk" %}Edit Materi Kuliah
+        {% elif action == "add_pertemuan" %}Tambah Pertemuan
+        {% elif action == "edit_pertemuan" %}Edit Pertemuan
+        {% elif action == "add_element" %}Tambah Blok Konten
+        {% elif action == "edit_element" %}Edit Blok Konten
+        {% else %}Editor{% endif %}
+    </span>
+</div>
+
+<div class="editor-container">
+<div class="editor-card">
+
+{% if action in ["add_mk", "edit_mk"] %}
+<div class="editor-heading">{% if action == "add_mk" %}Materi Kuliah Baru{% else %}Edit Materi Kuliah{% endif %}</div>
+<div class="editor-subheading">{% if action == "add_mk" %}Daftarkan materi kuliah baru{% else %}Perbarui informasi materi kuliah{% endif %}</div>
+<form action="/api/{{ 'add' if action == 'add_mk' else 'update' }}" method="POST">
+    <input type="hidden" name="type" value="mk">
+    {% if action == "edit_mk" and mk %}<input type="hidden" name="id" value="{{ mk.id }}">{% endif %}
+    <div class="form-group">
+        <label>Nama Materi Kuliah *</label>
+        <input type="text" name="namaMK" placeholder="cth: Kimia Organik" value="{{ mk.namaMK if mk else '' }}" required>
+    </div>
+    <div class="form-group">
+        <label>Dosen Pengampu</label>
+        <input type="text" name="dosen_pengampu" placeholder="cth: Dr. Ahmad Fauzi, M.Si." value="{{ mk.dosen_pengampu if mk else '' }}">
+    </div>
+    <div class="form-actions">
+        <a href="/" class="btn-cancel">Batal</a>
+        <button type="submit" class="btn-submit">{% if action == "add_mk" %}Simpan Materi Kuliah{% else %}Perbarui{% endif %}</button>
+    </div>
+</form>
+
+{% elif action in ["add_pertemuan", "edit_pertemuan"] %}
+<div class="editor-heading">{% if action == "add_pertemuan" %}Pertemuan Baru{% else %}Edit Pertemuan{% endif %}</div>
+<div class="editor-subheading">{% if action == "add_pertemuan" %}Tambahkan sesi pertemuan{% else %}Perbarui data pertemuan{% endif %}</div>
+<form action="/api/{{ 'add' if action == 'add_pertemuan' else 'update' }}" method="POST">
+    <input type="hidden" name="type" value="pertemuan">
+    {% if action == "edit_pertemuan" and pertemuan %}<input type="hidden" name="id" value="{{ pertemuan.id }}">{% endif %}
+    <div class="form-group">
+        <label>Materi Kuliah *</label>
+        <select name="namaMK" required>
+            <option value="">-- Pilih Materi Kuliah --</option>
+            {% for mk in all_mk %}
+            <option value="{{ mk.namaMK }}" {% if selected_mk == mk.namaMK %}selected{% endif %}>{{ mk.namaMK }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Tanggal Pertemuan</label>
+        <input type="date" name="tanggal_pertemuan" value="{{ pertemuan.tanggal_pertemuan if pertemuan else '' }}">
+    </div>
+    <div class="form-group">
+        <label>Topik Pertemuan *</label>
+        <input type="text" name="topik_pertemuan" placeholder="cth: Asam Basa Lewis" value="{{ pertemuan.topik_pertemuan if pertemuan else '' }}" required>
+    </div>
+    <div class="form-actions">
+        <a href="/" class="btn-cancel">Batal</a>
+        <button type="submit" class="btn-submit">{% if action == "add_pertemuan" %}Simpan Pertemuan{% else %}Perbarui{% endif %}</button>
+    </div>
+</form>
+
+{% elif action in ["add_element", "edit_element"] %}
+<div class="editor-heading">{% if action == "add_element" %}Blok Konten Baru{% else %}Edit Blok Konten{% endif %}</div>
+<div class="editor-subheading">{% if action == "add_element" %}Pilih tipe konten dan isi datanya{% else %}Perbarui isi blok konten{% endif %}</div>
+
+<form id="element-form" action="/api/{{ 'add' if action == 'add_element' else 'update' }}" method="POST">
+    <input type="hidden" name="type" value="element">
+    {% if action == "edit_element" and element %}<input type="hidden" name="id" value="{{ element.id }}">{% endif %}
+
+    <div class="form-group">
+        <label>Materi Kuliah *</label>
+        <select name="namaMK" id="sel-mk" required onchange="onMKChange(this.value)">
+            <option value="">-- Pilih Materi Kuliah --</option>
+            {% for mk in all_mk %}
+            <option value="{{ mk.namaMK }}" {% if selected_mk == mk.namaMK %}selected{% endif %}>{{ mk.namaMK }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Topik Pertemuan *</label>
+        <select name="topik_pertemuan" id="sel-topik" required>
+            <option value="">-- Pilih Topik --</option>
+            {% for pt in all_pertemuan %}
+            <option value="{{ pt.topik_pertemuan }}" {% if selected_topik == pt.topik_pertemuan %}selected{% endif %}>{{ pt.topik_pertemuan }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Tipe Konten *</label>
+        <div class="block-type-grid">
+            {% set current_type = element.block_type if element else "paragraf" %}
+            {% for bt in [("paragraf","¶","Paragraf"),("header","H","Header"),("latex","∑","LaTeX"),("kode","</>","Kode"),("img","⬡","Gambar"),("embed","⊞","Embed"),("link","↗","Link")] %}
+            <input type="radio" name="block_type" id="bt-{{ bt[0] }}" value="{{ bt[0] }}"
+                   class="block-type-option"
+                   {% if current_type == bt[0] %}checked{% endif %}
+                   onchange="switchBlockType('{{ bt[0] }}')">
+            <label for="bt-{{ bt[0] }}" class="block-type-label">
+                <span class="icon">{{ bt[1] }}</span>
+                <span class="label">{{ bt[2] }}</span>
+            </label>
+            {% endfor %}
+        </div>
+    </div>
+
+    <input type="hidden" name="content" id="content-hidden" value="{{ element.content if element else '' }}">
+
+    <div class="input-area" id="area-paragraf">
+        <div class="form-group">
+            <label>Teks Paragraf</label>
+            <div id="quill-editor" style="min-height:140px;"></div>
+        </div>
+    </div>
+
+    <div class="input-area" id="area-header">
+        <div class="form-group">
+            <label>Teks Heading</label>
+            <input type="text" id="input-header" placeholder="Judul bagian..."
+                   value="{{ element.content if element and element.block_type == 'header' else '' }}">
+        </div>
+    </div>
+
+    <div class="input-area" id="area-latex">
+        <div class="form-group">
+            <label>Kode LaTeX</label>
+            <textarea id="input-latex" placeholder="cth: \int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}" oninput="previewLatex(this.value)">{{ element.content if element and element.block_type == 'latex' else '' }}</textarea>
+        </div>
+        <div class="form-group">
+            <label>Preview</label>
+            <div class="latex-preview" id="latex-preview">Preview akan muncul di sini...</div>
+        </div>
+    </div>
+
+    <div class="input-area" id="area-img">
+        <div class="img-source-tabs">
+            <button type="button" class="img-tab-btn active" onclick="switchImgTab('upload',this)">Upload File</button>
+            <button type="button" class="img-tab-btn" onclick="switchImgTab('clipboard',this)">Clipboard</button>
+            <button type="button" class="img-tab-btn" onclick="switchImgTab('url',this)">URL Eksternal</button>
+        </div>
+        <div class="img-panel active" id="img-panel-upload">
+            <div class="form-group">
+                <div class="file-input-wrapper">
+                    <div class="file-label" id="file-label-display">📎 Klik untuk pilih gambar...</div>
+                    <input type="file" id="img-file-input" accept="image/*" onchange="handleFileSelect(this)">
+                </div>
+                <div class="upload-status" id="upload-status"></div>
+            </div>
+        </div>
+        <div class="img-panel" id="img-panel-clipboard">
+            <div class="form-group">
+                <div class="clipboard-drop-zone" id="clipboard-drop-zone"
+                     onclick="pasteFromClipboard()"
+                     ondrop="handleDrop(event)"
+                     ondragover="handleDragOver(event)"
+                     ondragleave="handleDragLeave(event)">
+                    <span class="clipboard-drop-zone__icon">📋</span>
+                    <div class="clipboard-drop-zone__hint">
+                        Tekan <kbd>Ctrl+V</kbd> untuk paste gambar dari clipboard<br>
+                        atau klik di sini &mdash; atau drag &amp; drop gambar ke sini
+                    </div>
+                </div>
+                <button type="button" class="clipboard-clear-btn" id="clipboard-clear-btn" onclick="clearClipboardImage()">✕ Hapus gambar</button>
+            </div>
+        </div>
+        <div class="img-panel" id="img-panel-url">
+            <div class="form-group">
+                <label>URL Gambar Eksternal</label>
+                <input type="url" id="img-url-input" placeholder="https://contoh.com/gambar.jpg"
+                       value="{{ element.content if element and element.block_type == 'img' and element.content and element.content.startswith('http') else '' }}"
+                       oninput="previewImgUrl(this.value)">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Teks Alternatif (Alt Text)</label>
+            <input type="text" name="alt_text" id="input-alttext" placeholder="Deskripsi singkat gambar..."
+                   value="{{ element.alt_text if element else '' }}">
+        </div>
+        <img id="img-preview" src="" alt="Preview">
+    </div>
+
+    <div class="input-area" id="area-kode">
+        <div class="form-group">
+            <label>Kode Program</label>
+            <div class="code-editor-wrap">
+                <div class="code-lang-bar">
+                    <select id="kode-lang-select" class="code-lang-select" onchange="updateKodeLangLabel(this.value)">
+                        <option value="plaintext">Plain Text</option>
+                        <option value="python">Python</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="typescript">TypeScript</option>
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="java">Java</option>
+                        <option value="c">C</option>
+                        <option value="cpp">C++</option>
+                        <option value="csharp">C#</option>
+                        <option value="go">Go</option>
+                        <option value="rust">Rust</option>
+                        <option value="php">PHP</option>
+                        <option value="bash">Bash / Shell</option>
+                        <option value="sql">SQL</option>
+                        <option value="json">JSON</option>
+                        <option value="xml">XML</option>
+                        <option value="yaml">YAML</option>
+                        <option value="markdown">Markdown</option>
+                        <option value="r">R</option>
+                        <option value="matlab">MATLAB</option>
+                    </select>
+                    <span class="code-lang-label" id="kode-lang-label">PLAIN TEXT</span>
+                </div>
+                <textarea id="input-kode" placeholder="Tulis atau paste kode di sini..."
+                          oninput="previewKode()" onkeydown="handleKodeTab(event)"></textarea>
+            </div>
+        </div>
+        <div class="kode-preview-label">Preview</div>
+        <div class="kode-preview-wrap" id="kode-preview-wrap">
+            <pre><code id="kode-preview-code"></code></pre>
+        </div>
+    </div>
+
+    <div class="input-area" id="area-embed">
+        <div class="embed-mode-tabs">
+            <button type="button" class="embed-mode-tab active" onclick="switchEmbedMode('url',this)">🔗 URL</button>
+            <button type="button" class="embed-mode-tab" onclick="switchEmbedMode('code',this)">&lt;/&gt; Custom Code</button>
+        </div>
+        <div class="embed-mode-panel active" id="embed-mode-url">
+            <div class="form-group">
+                <label>URL Sumber</label>
+                <div class="embed-type-grid">
+                    <button type="button" class="embed-type-btn active" onclick="setEmbedType('auto',this)"><span class="e-icon">🔗</span><span class="e-label">Auto</span></button>
+                    <button type="button" class="embed-type-btn" onclick="setEmbedType('video',this)"><span class="e-icon">▶️</span><span class="e-label">Video</span></button>
+                    <button type="button" class="embed-type-btn" onclick="setEmbedType('doc',this)"><span class="e-icon">📄</span><span class="e-label">Dokumen</span></button>
+                    <button type="button" class="embed-type-btn" onclick="setEmbedType('map',this)"><span class="e-icon">🗺️</span><span class="e-label">Peta</span></button>
+                    <button type="button" class="embed-type-btn" onclick="setEmbedType('design',this)"><span class="e-icon">🎨</span><span class="e-label">Desain</span></button>
+                    <button type="button" class="embed-type-btn" onclick="setEmbedType('audio',this)"><span class="e-icon">🎵</span><span class="e-label">Audio</span></button>
+                    <button type="button" class="embed-type-btn" onclick="setEmbedType('social',this)"><span class="e-icon">💬</span><span class="e-label">Sosial</span></button>
+                    <button type="button" class="embed-type-btn" onclick="setEmbedType('web',this)"><span class="e-icon">🌐</span><span class="e-label">Website</span></button>
+                </div>
+                <p class="embed-hint" id="embed-hint">Paste URL — tipe embed akan terdeteksi otomatis.</p>
+                <div class="embed-url-input-wrap">
+                    <input type="url" id="embed-url-input" placeholder="https://..." oninput="onEmbedUrlInput(this.value)" value="">
+                    <span class="embed-detect-badge" id="embed-detect-badge"></span>
+                </div>
+            </div>
+        </div>
+        <div class="embed-mode-panel" id="embed-mode-code">
+            <div class="form-group">
+                <label>Embed Code</label>
+                <div class="embed-code-wrap">
+                    <div class="embed-code-bar">
+                        <span class="embed-code-bar-label">HTML / IFRAME</span>
+                        <button type="button" class="embed-code-paste-btn" onclick="pasteEmbedCode()">📋 Paste</button>
+                    </div>
+                    <textarea id="embed-custom-code"
+                              placeholder="Paste kode embed di sini...&#10;Contoh: <iframe src=&quot;https://...&quot; ...></iframe>"
+                              oninput="onCustomCodeInput(this.value)" spellcheck="false"></textarea>
+                </div>
+                <div class="embed-code-status dim" id="embed-code-status">Paste embed code dari platform manapun.</div>
+            </div>
+            <p class="embed-hint">Didukung: &lt;iframe&gt;, &lt;blockquote&gt; (Twitter/Instagram), atau URL mentah.</p>
+        </div>
+        <div class="embed-height-row">
+            <label>Tinggi</label>
+            <input type="range" id="embed-height-range" min="200" max="800" step="50" value="400" oninput="onEmbedHeightChange(this.value)">
+            <span class="embed-height-val" id="embed-height-val">400px</span>
+        </div>
+        <div class="embed-preview-wrap" id="embed-preview-wrap">
+            <iframe id="embed-preview-frame" allowfullscreen
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            <div class="embed-preview-label" id="embed-preview-label">Preview</div>
+        </div>
+    </div>
+
+    <div class="input-area" id="area-link">
+        <div class="form-group">
+            <label>URL Link</label>
+            <input type="url" id="input-link" placeholder="https://contoh.com"
+                   value="{{ element.content if element and element.block_type == 'link' else '' }}">
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <a href="/" class="btn-cancel">Batal</a>
+        <button type="button" class="btn-submit" onclick="submitElementForm()">
+            {% if action == "add_element" %}Simpan Blok{% else %}Perbarui Blok{% endif %}
+        </button>
+    </div>
+</form>
+{% endif %}
+
+</div>
+</div>
+
+<script>
+let quill = null;
+
+function initQuill() {
+    if (quill || !document.getElementById("quill-editor")) return;
+    quill = new Quill("#quill-editor", {
+        theme: "snow",
+        placeholder: "Tulis paragraf di sini...",
+        modules: { toolbar: [["bold","italic","underline"],[{"list":"ordered"},{"list":"bullet"}],["clean"]] }
+    });
+    const existing = document.getElementById("content-hidden").value;
+    const bt = document.querySelector('input[name="block_type"]:checked')?.value;
+    if (bt === "paragraf" && existing) quill.setText(existing);
+}
+
+function getEditorContent() { return quill ? quill.getText().trim() : ""; }
+
+function switchBlockType(type) {
+    document.querySelectorAll(".input-area").forEach(el => el.classList.remove("active"));
+    const target = document.getElementById("area-" + type);
+    if (!target) return;
+    target.classList.add("active");
+    if (type === "paragraf") initQuill();
+    if (type === "latex") { const v = document.getElementById("input-latex")?.value; if (v) previewLatex(v); }
+    if (type === "kode")   restoreKodeEdit();
+    if (type === "embed")  restoreEmbedEdit();
+    if (type === "img") {
+        const p = document.getElementById("content-hidden").value;
+        if (p) showImgPreview(p.startsWith("http") ? p : "/" + p);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const checked = document.querySelector('input[name="block_type"]:checked');
+    if (checked) switchBlockType(checked.value);
+});
+
+let _latexTimer = null;
+function previewLatex(code) {
+    clearTimeout(_latexTimer);
+    _latexTimer = setTimeout(() => {
+        const el = document.getElementById("latex-preview");
+        if (!el || typeof katex === "undefined") return;
+        if (!code.trim()) { el.innerHTML = '<span style="color:var(--ink-faint)">Preview akan muncul di sini...</span>'; return; }
+        try { katex.render(code, el, { displayMode: true, throwOnError: false }); }
+        catch(e) { el.innerHTML = `<span style="color:var(--danger);font-size:0.78rem">Error: ${e.message}</span>`; }
+    }, 300);
+}
+
+function switchImgTab(tab, btn) {
+    document.querySelectorAll(".img-tab-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    document.querySelectorAll(".img-panel").forEach(p => p.classList.remove("active"));
+    document.getElementById("img-panel-" + tab).classList.add("active");
+}
+
+function handleFileSelect(input) {
+    const file = input.files[0]; if (!file) return;
+    const lbl = document.getElementById("file-label-display");
+    lbl.textContent = "📎 " + file.name; lbl.classList.add("has-file");
+    const reader = new FileReader();
+    reader.onload = e => showImgPreview(e.target.result);
+    reader.readAsDataURL(file);
+}
+function showImgPreview(src) { const el = document.getElementById("img-preview"); if (el) { el.src = src; el.style.display = "block"; } }
+function previewImgUrl(url) { if (url) showImgPreview(url); }
+
+let _clipboardImageBlob = null;
+async function pasteFromClipboard() {
+    try {
+        const items = await navigator.clipboard.read();
+        for (const item of items) {
+            const t = item.types.find(t => t.startsWith("image/"));
+            if (t) { setClipboardImage(await item.getType(t)); return; }
+        }
+        showClipboardHint("Tidak ada gambar di clipboard. Salin gambar dulu, lalu tekan Ctrl+V.");
+    } catch { showClipboardHint("Klik di area ini lalu tekan Ctrl+V untuk paste gambar."); }
+}
+function setClipboardImage(blob) {
+    _clipboardImageBlob = blob;
+    showImgPreview(URL.createObjectURL(blob));
+    const zone = document.getElementById("clipboard-drop-zone");
+    const btn  = document.getElementById("clipboard-clear-btn");
+    if (zone) { zone.classList.add("has-image"); zone.querySelector(".clipboard-drop-zone__icon").textContent = "✅"; zone.querySelector(".clipboard-drop-zone__hint").textContent = "Gambar siap diupload"; }
+    if (btn) btn.classList.add("visible");
+}
+function clearClipboardImage() {
+    _clipboardImageBlob = null;
+    const zone = document.getElementById("clipboard-drop-zone");
+    const btn  = document.getElementById("clipboard-clear-btn");
+    if (zone) { zone.classList.remove("has-image"); zone.querySelector(".clipboard-drop-zone__icon").textContent = "📋"; zone.querySelector(".clipboard-drop-zone__hint").innerHTML = "Tekan <kbd>Ctrl+V</kbd> untuk paste gambar dari clipboard<br>atau klik di sini &mdash; atau drag &amp; drop gambar ke sini"; }
+    if (btn) btn.classList.remove("visible");
+    const prev = document.getElementById("img-preview");
+    if (prev) { prev.src = ""; prev.style.display = "none"; }
+}
+function showClipboardHint(msg) { const zone = document.getElementById("clipboard-drop-zone"); if (zone) zone.querySelector(".clipboard-drop-zone__hint").textContent = msg; }
+function handleDragOver(e)  { e.preventDefault(); e.dataTransfer.dropEffect = "copy"; document.getElementById("clipboard-drop-zone")?.classList.add("drag-over"); }
+function handleDragLeave()  { document.getElementById("clipboard-drop-zone")?.classList.remove("drag-over"); }
+function handleDrop(e) {
+    e.preventDefault(); document.getElementById("clipboard-drop-zone")?.classList.remove("drag-over");
+    const file = Array.from(e.dataTransfer.files).find(f => f.type.startsWith("image/"));
+    if (file) setClipboardImage(file);
+}
+document.addEventListener("paste", e => {
+    const active = document.querySelector(".img-panel.active");
+    if (!active || active.id !== "img-panel-clipboard") return;
+    const item = Array.from(e.clipboardData?.items || []).find(i => i.type.startsWith("image/"));
+    if (item) { const blob = item.getAsFile(); if (blob) { setClipboardImage(blob); e.preventDefault(); } }
+});
+
+function updateKodeLangLabel(val) { const el = document.getElementById("kode-lang-label"); if (el) el.textContent = val.toUpperCase(); }
+
+let _kodeTimer = null;
+function previewKode() {
+    clearTimeout(_kodeTimer);
+    _kodeTimer = setTimeout(() => {
+        const code = document.getElementById("input-kode")?.value || "";
+        const lang = document.getElementById("kode-lang-select")?.value || "plaintext";
+        const wrap = document.getElementById("kode-preview-wrap");
+        const el   = document.getElementById("kode-preview-code");
+        if (!el || !wrap) return;
+        if (!code.trim()) { wrap.classList.remove("visible"); return; }
+        el.className = "language-" + lang; el.textContent = code;
+        if (typeof hljs !== "undefined") hljs.highlightElement(el);
+        wrap.classList.add("visible");
+    }, 300);
+}
+function handleKodeTab(e) {
+    if (e.key !== "Tab") return; e.preventDefault();
+    const ta = e.target; const s = ta.selectionStart; const end = ta.selectionEnd;
+    ta.value = ta.value.substring(0, s) + "    " + ta.value.substring(end);
+    ta.selectionStart = ta.selectionEnd = s + 4; previewKode();
+}
+function restoreKodeEdit() {
+    const raw = document.getElementById("content-hidden").value; if (!raw) return;
+    try { const p = JSON.parse(raw); if (p.lang) { const s = document.getElementById("kode-lang-select"); if (s) { s.value = p.lang; updateKodeLangLabel(p.lang); } } if (p.code) { const ta = document.getElementById("input-kode"); if (ta) { ta.value = p.code; previewKode(); } } } catch {}
+}
+
+let _embedType = "auto";
+let _embedMode = "url";
+const embedHints = { auto:"Paste URL — tipe embed akan terdeteksi otomatis.", video:"URL YouTube, Vimeo, atau video lainnya.", doc:"Google Docs, Sheets, Slides, Drive, atau Office Online.", map:"Google Maps atau URL peta.", design:"Figma, Canva, atau alat desain lainnya.", audio:"Spotify, SoundCloud, atau platform audio.", social:"Twitter/X, Instagram, dan platform sosial.", web:"URL website apa pun." };
+function setEmbedType(type, btn) { _embedType = type; document.querySelectorAll(".embed-type-btn").forEach(b => b.classList.remove("active")); btn.classList.add("active"); const h = document.getElementById("embed-hint"); if (h) h.textContent = embedHints[type] || ""; }
+function onEmbedHeightChange(val) { const v = document.getElementById("embed-height-val"); const f = document.getElementById("embed-preview-frame"); if (v) v.textContent = val + "px"; if (f) f.style.height = val + "px"; }
+function onEmbedUrlInput(val) { clearTimeout(window._embedTimer); window._embedTimer = setTimeout(() => applyEmbedUrl(val), 500); }
+function applyEmbedUrl(url) { if (!url) { document.getElementById("embed-preview-wrap")?.classList.remove("visible"); document.getElementById("embed-detect-badge")?.classList.remove("visible"); return; } const resolved = resolveEmbedUrl(url); const badge = document.getElementById("embed-detect-badge"); const frame = document.getElementById("embed-preview-frame"); const wrap = document.getElementById("embed-preview-wrap"); const pl = document.getElementById("embed-preview-label"); if (resolved && badge) { badge.textContent = resolved.label; badge.classList.add("visible"); } else if (badge) { badge.classList.remove("visible"); } if (resolved && frame && wrap) { frame.src = resolved.embedUrl; frame.style.height = (document.getElementById("embed-height-range")?.value || 400) + "px"; if (pl) pl.textContent = resolved.label; wrap.classList.add("visible"); } }
+function resolveEmbedUrl(u) { if (!u) return null; try { new URL(u); } catch { return null; } const yt = u.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/); if (yt) { const t = new URLSearchParams(new URL(u).search).get("t") || ""; return { embedUrl: `https://www.youtube.com/embed/${yt[1]}${t?"?start="+t:""}`, label: "YouTube" }; } const vimeo = u.match(/vimeo\.com\/(\d+)/); if (vimeo) return { embedUrl: `https://player.vimeo.com/video/${vimeo[1]}`, label: "Vimeo" }; const gd = u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=)([A-Za-z0-9_-]+)/); if (gd) return { embedUrl: `https://drive.google.com/file/d/${gd[1]}/preview`, label: "Google Drive" }; const gdoc = u.match(/docs\.google\.com\/(document|spreadsheets|presentation|forms)\/d\/([A-Za-z0-9_-]+)/); if (gdoc) { const labels = { document:"Google Docs", spreadsheets:"Google Sheets", presentation:"Google Slides", forms:"Google Forms" }; return { embedUrl: `https://docs.google.com/${gdoc[1]}/d/${gdoc[2]}/preview`, label: labels[gdoc[1]] }; } if (u.includes("figma.com")) return { embedUrl: `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(u)}`, label: "Figma" }; const sp = u.match(/open\.spotify\.com\/(track|album|playlist|episode|show)\/([A-Za-z0-9]+)/); if (sp) return { embedUrl: `https://open.spotify.com/embed/${sp[1]}/${sp[2]}`, label: "Spotify" }; return { embedUrl: u, label: "Website" }; }
+function switchEmbedMode(mode, btn) { _embedMode = mode; document.querySelectorAll(".embed-mode-tab").forEach(b => b.classList.remove("active")); btn.classList.add("active"); document.querySelectorAll(".embed-mode-panel").forEach(p => p.classList.remove("active")); document.getElementById("embed-mode-" + mode)?.classList.add("active"); document.getElementById("embed-preview-wrap")?.classList.remove("visible"); document.getElementById("embed-detect-badge")?.classList.remove("visible"); }
+function parseEmbedCode(raw) { if (!raw || !raw.trim()) return null; const text = raw.trim(); const srcMatch = text.match(/src=["']([^"']+)["']/i); if (srcMatch && srcMatch[1]) { const src = srcMatch[1]; const resolved = resolveEmbedUrl(src); return { src, label: resolved ? resolved.label : "Embed" }; } const tweetId = text.match(/data-tweet-id=["'](\d+)["']/i); if (tweetId) return { src: "https://twitframe.com/show?url=https://twitter.com/i/status/" + tweetId[1], label: "Twitter / X" }; const tweetUrl = text.match(/(?:twitter|x)\.com\/\w+\/status\/(\d+)/); if (tweetUrl) return { src: "https://twitframe.com/show?url=https://twitter.com/i/status/" + tweetUrl[1], label: "Twitter / X" }; const ig = text.match(/instagram\.com\/p\/([A-Za-z0-9_-]+)/); if (ig) return { src: "https://www.instagram.com/p/" + ig[1] + "/embed", label: "Instagram" }; try { new URL(text); const r = resolveEmbedUrl(text); return { src: r ? r.embedUrl : text, label: r ? r.label : "Website" }; } catch {} return null; }
+let _customCodeTimer = null;
+function onCustomCodeInput(raw) { clearTimeout(_customCodeTimer); _customCodeTimer = setTimeout(() => applyCustomCode(raw), 400); }
+function applyCustomCode(raw) { const statusEl = document.getElementById("embed-code-status"); const wrap = document.getElementById("embed-preview-wrap"); const frame = document.getElementById("embed-preview-frame"); const badge = document.getElementById("embed-detect-badge"); if (!raw || !raw.trim()) { if (statusEl) { statusEl.textContent = "Paste embed code dari platform manapun."; statusEl.className = "embed-code-status dim"; } wrap?.classList.remove("visible"); badge?.classList.remove("visible"); return; } const parsed = parseEmbedCode(raw); if (!parsed) { if (statusEl) { statusEl.textContent = "✗ Tidak dapat menemukan URL embed."; statusEl.className = "embed-code-status err"; } wrap?.classList.remove("visible"); badge?.classList.remove("visible"); return; } if (statusEl) { statusEl.textContent = "✓ Terdeteksi: " + parsed.label; statusEl.className = "embed-code-status ok"; } if (badge) { badge.textContent = parsed.label; badge.classList.add("visible"); } if (frame) { frame.src = parsed.src; frame.style.height = (document.getElementById("embed-height-range")?.value || 400) + "px"; } const pl = document.getElementById("embed-preview-label"); if (pl) pl.textContent = parsed.label; wrap?.classList.add("visible"); }
+async function pasteEmbedCode() { try { const text = await navigator.clipboard.readText(); const ta = document.getElementById("embed-custom-code"); if (ta) { ta.value = text; onCustomCodeInput(text); } } catch { document.getElementById("embed-custom-code")?.focus(); } }
+function restoreEmbedEdit() { const raw = document.getElementById("content-hidden").value; if (!raw) return; try { const p = JSON.parse(raw); if (p.height) { const r = document.getElementById("embed-height-range"); if (r) { r.value = p.height; onEmbedHeightChange(p.height); } } if (p.mode === "code" && p.rawCode) { const btn = document.querySelector(".embed-mode-tab:nth-child(2)"); if (btn) switchEmbedMode("code", btn); const ta = document.getElementById("embed-custom-code"); if (ta) { ta.value = p.rawCode; applyCustomCode(p.rawCode); } } else if (p.url) { const inp = document.getElementById("embed-url-input"); if (inp) inp.value = p.url; applyEmbedUrl(p.url); } } catch {} }
+
+async function uploadImage(mkName, topik) {
+    let file = null;
+    const active = document.querySelector(".img-panel.active");
+    if (active?.id === "img-panel-clipboard") {
+        file = _clipboardImageBlob;
+        if (!file) { const s = document.getElementById("upload-status"); s.textContent = "✗ Belum ada gambar dari clipboard."; s.className = "upload-status show err"; return null; }
+        if (!file.name) { const ext = file.type.split("/")[1] || "png"; file = new File([file], "clipboard_image." + ext, { type: file.type }); }
+    } else {
+        file = document.getElementById("img-file-input")?.files[0];
+    }
+    if (!file) return null;
+    const s = document.getElementById("upload-status");
+    s.textContent = "Mengupload gambar..."; s.className = "upload-status show";
+    const fd = new FormData();
+    fd.append("file", file); fd.append("namaMK", mkName); fd.append("topik", topik);
+    try {
+        const res  = await fetch("/upload/image", { method: "POST", body: fd });
+        const data = await res.json();
+        if (data.success) { s.textContent = "✓ Upload berhasil: " + data.filename; s.className = "upload-status show ok"; return data.path; }
+        else { s.textContent = "✗ Gagal: " + data.error; s.className = "upload-status show err"; return null; }
+    } catch(e) { s.textContent = "✗ Error: " + e.message; s.className = "upload-status show err"; return null; }
+}
+
+async function submitElementForm() {
+    const blockType = document.querySelector('input[name="block_type"]:checked')?.value;
+    const mkName    = document.getElementById("sel-mk")?.value;
+    const topik     = document.getElementById("sel-topik")?.value;
+    const hidden    = document.getElementById("content-hidden");
+    if (!mkName || !topik) { alert("Pilih Materi Kuliah dan Topik Pertemuan terlebih dahulu."); return; }
+    let content = "";
+    if (blockType === "paragraf") { content = getEditorContent(); }
+    else if (blockType === "header") { content = document.getElementById("input-header")?.value || ""; }
+    else if (blockType === "latex")  { content = document.getElementById("input-latex")?.value || ""; }
+    else if (blockType === "link")   { content = document.getElementById("input-link")?.value || ""; }
+    else if (blockType === "kode")   { const code = document.getElementById("input-kode")?.value || ""; const lang = document.getElementById("kode-lang-select")?.value || "plaintext"; content = JSON.stringify({ lang, code }); }
+    else if (blockType === "embed") {
+        const height = parseInt(document.getElementById("embed-height-range")?.value || "400");
+        if (_embedMode === "code") { const rawCode = document.getElementById("embed-custom-code")?.value || ""; const parsed = parseEmbedCode(rawCode); if (!parsed) { alert("Embed code tidak valid."); return; } content = JSON.stringify({ mode: "code", rawCode, src: parsed.src, label: parsed.label, height }); }
+        else { const url = document.getElementById("embed-url-input")?.value || ""; content = JSON.stringify({ mode: "url", url, height }); }
+    } else if (blockType === "img") {
+        const isUpload    = document.getElementById("img-panel-upload")?.classList.contains("active");
+        const isClipboard = document.getElementById("img-panel-clipboard")?.classList.contains("active");
+        if (isUpload) { if (document.getElementById("img-file-input")?.files[0]) { content = await uploadImage(mkName, topik); if (!content) return; } else { content = hidden.value || ""; } }
+        else if (isClipboard) { if (_clipboardImageBlob) { content = await uploadImage(mkName, topik); if (!content) return; } else { content = hidden.value || ""; } }
+        else { content = document.getElementById("img-url-input")?.value || ""; }
+    }
+    hidden.value = content;
+    document.getElementById("element-form").submit();
+}
+
+async function onMKChange(mkName) {
+    const sel = document.getElementById("sel-topik");
+    if (!sel || !mkName) return;
+    sel.innerHTML = '<option value="">-- Memuat... --</option>';
+    try {
+        const res  = await fetch("/api/pertemuan?mk=" + encodeURIComponent(mkName));
+        const data = await res.json();
+        const list = data.pertemuan || [];
+        if (!list.length) { sel.innerHTML = '<option value="">-- Belum ada pertemuan --</option>'; return; }
+        sel.innerHTML = '<option value="">-- Pilih Topik --</option>' +
+            list.map(pt => `<option value="${escAttr(pt.topik_pertemuan)}">${esc(pt.topik_pertemuan)}</option>`).join("");
+    } catch { sel.innerHTML = '<option value="">-- Gagal memuat --</option>'; }
+}
+
+function esc(s)     { return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function escAttr(s) { return esc(s).replace(/"/g,"&quot;"); }
+</script>
+</body>
+</html>

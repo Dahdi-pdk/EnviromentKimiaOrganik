@@ -1,0 +1,231 @@
+2026-07-05 02:21:20,091 [INFO] Aplikasi dimulai | frozen=True
+2026-07-05 02:21:20,092 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\PersonalNotebook\_internal
+2026-07-05 02:21:20,092 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\PersonalNotebook
+2026-07-05 02:21:20,747 [INFO] Database utama berhasil diinisialisasi.
+2026-07-05 02:21:22,799 [INFO] Flask akan berjalan di http://127.0.0.1:5000
+2026-07-05 02:21:22,849 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-05 02:21:22,850 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-05 02:21:23,116 [INFO] Flask siap. Membuka UI...
+2026-07-05 02:21:23,150 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5000
+2026-07-05 02:21:28,503 [INFO] 127.0.0.1 - - [05/Jul/2026 02:21:28] "GET / HTTP/1.1" 200 -
+2026-07-05 02:21:29,193 [INFO] 127.0.0.1 - - [05/Jul/2026 02:21:29] "GET /api/data HTTP/1.1" 200 -
+2026-07-05 02:21:29,779 [INFO] 127.0.0.1 - - [05/Jul/2026 02:21:29] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-07-05 02:21:32,884 [INFO] 127.0.0.1 - - [05/Jul/2026 02:21:32] "GET /editor?action=add_mk HTTP/1.1" 200 -
+2026-07-05 02:21:34,984 [INFO] 127.0.0.1 - - [05/Jul/2026 02:21:34] "GET / HTTP/1.1" 200 -
+2026-07-05 02:21:35,048 [INFO] 127.0.0.1 - - [05/Jul/2026 02:21:35] "GET /api/data HTTP/1.1" 200 -
+2026-07-05 02:21:36,158 [INFO] 127.0.0.1 - - [05/Jul/2026 02:21:36] "GET /editor?action=add_pertemuan HTTP/1.1" 200 -
+2026-07-05 02:21:37,446 [INFO] 127.0.0.1 - - [05/Jul/2026 02:21:37] "GET / HTTP/1.1" 200 -
+2026-07-05 02:21:38,054 [INFO] 127.0.0.1 - - [05/Jul/2026 02:21:38] "GET /api/data HTTP/1.1" 200 -
+2026-07-05 02:22:09,722 [INFO] 127.0.0.1 - - [05/Jul/2026 02:22:09] "GET / HTTP/1.1" 200 -
+2026-07-05 02:22:10,328 [INFO] 127.0.0.1 - - [05/Jul/2026 02:22:10] "GET /api/data HTTP/1.1" 200 -
+2026-07-05 02:22:10,430 [INFO] 127.0.0.1 - - [05/Jul/2026 02:22:10] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-07-05 02:22:17,055 [INFO] 127.0.0.1 - - [05/Jul/2026 02:22:17] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2026-07-05 02:26:49,934 [INFO] 127.0.0.1 - - [05/Jul/2026 02:26:49] "GET /editor?action=add_mk HTTP/1.1" 200 -
+2026-07-05 02:26:52,901 [INFO] 127.0.0.1 - - [05/Jul/2026 02:26:52] "GET / HTTP/1.1" 200 -
+2026-07-05 02:26:52,945 [INFO] 127.0.0.1 - - [05/Jul/2026 02:26:52] "GET /api/data HTTP/1.1" 200 -
+2026-07-05 02:40:06,910 [INFO] 127.0.0.1 - - [05/Jul/2026 02:40:06] "GET /editor?action=add_mk HTTP/1.1" 200 -
+2026-07-05 02:40:35,718 [INFO] 127.0.0.1 - - [05/Jul/2026 02:40:35] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-07-05 02:40:35,734 [INFO] 127.0.0.1 - - [05/Jul/2026 02:40:35] "GET /?mk=Kimia%20Unsur HTTP/1.1" 200 -
+2026-07-05 02:40:35,831 [INFO] 127.0.0.1 - - [05/Jul/2026 02:40:35] "GET /api/data HTTP/1.1" 200 -
+2026-07-05 02:40:38,759 [INFO] 127.0.0.1 - - [05/Jul/2026 02:40:38] "GET /editor?action=add_pertemuan&mk=Kimia%20Unsur HTTP/1.1" 200 -
+2026-07-05 02:55:26,919 [INFO] 127.0.0.1 - - [05/Jul/2026 02:55:26] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-07-05 02:55:26,998 [INFO] 127.0.0.1 - - [05/Jul/2026 02:55:26] "GET /?mk=Kimia%20Unsur&topik=Langmuir-Hinshelwood%20mechanism HTTP/1.1" 200 -
+2026-07-05 02:55:27,515 [INFO] 127.0.0.1 - - [05/Jul/2026 02:55:27] "GET /api/data HTTP/1.1" 200 -
+2026-07-05 03:00:31,367 [INFO] 127.0.0.1 - - [05/Jul/2026 03:00:31] "GET /editor?action=add_element&mk=Kimia%20Unsur&topik=Langmuir-Hinshelwood%20mechanism HTTP/1.1" 200 -
+2026-07-05 03:00:51,248 [INFO] 127.0.0.1 - - [05/Jul/2026 03:00:51] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-07-05 03:00:51,261 [INFO] 127.0.0.1 - - [05/Jul/2026 03:00:51] "GET /?mk=Kimia%20Unsur&topik=Langmuir-Hinshelwood%20mechanism HTTP/1.1" 200 -
+2026-07-05 03:00:51,357 [INFO] 127.0.0.1 - - [05/Jul/2026 03:00:51] "GET /api/data HTTP/1.1" 200 -
+2026-07-05 03:00:54,318 [INFO] 127.0.0.1 - - [05/Jul/2026 03:00:54] "GET /editor?action=add_element&mk=Kimia%20Unsur&topik=Langmuir-Hinshelwood%20mechanism HTTP/1.1" 200 -
+2026-07-05 03:01:37,303 [INFO] 127.0.0.1 - - [05/Jul/2026 03:01:37] "POST /upload/image HTTP/1.1" 200 -
+2026-07-05 03:01:37,352 [INFO] 127.0.0.1 - - [05/Jul/2026 03:01:37] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-07-05 03:01:37,366 [INFO] 127.0.0.1 - - [05/Jul/2026 03:01:37] "GET /?mk=Kimia%20Unsur&topik=Langmuir-Hinshelwood%20mechanism HTTP/1.1" 200 -
+2026-07-05 03:01:37,435 [INFO] 127.0.0.1 - - [05/Jul/2026 03:01:37] "GET /api/data HTTP/1.1" 200 -
+2026-07-05 03:01:37,569 [INFO] 127.0.0.1 - - [05/Jul/2026 03:01:37] "GET /storage/Kimia_Unsur/Langmuir-Hinshelwood_mechanism/Kimia_Unsur_Langmuir-Hinshelwood_mechanism_20260705_030137.png HTTP/1.1" 200 -
+2026-07-05 03:03:38,902 [INFO] 127.0.0.1 - - [05/Jul/2026 03:03:38] "GET /editor?action=add_element&mk=Kimia%20Unsur&topik=Langmuir-Hinshelwood%20mechanism HTTP/1.1" 200 -
+2026-07-05 03:04:00,839 [INFO] 127.0.0.1 - - [05/Jul/2026 03:04:00] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-07-05 03:04:00,855 [INFO] 127.0.0.1 - - [05/Jul/2026 03:04:00] "GET /?mk=Kimia%20Unsur&topik=Langmuir-Hinshelwood%20mechanism HTTP/1.1" 200 -
+2026-07-05 03:04:00,938 [INFO] 127.0.0.1 - - [05/Jul/2026 03:04:00] "GET /api/data HTTP/1.1" 200 -
+2026-07-05 03:04:00,975 [INFO] 127.0.0.1 - - [05/Jul/2026 03:04:00] "[36mGET /storage/Kimia_Unsur/Langmuir-Hinshelwood_mechanism/Kimia_Unsur_Langmuir-Hinshelwood_mechanism_20260705_030137.png HTTP/1.1[0m" 304 -
+2026-07-05 03:11:18,021 [INFO] 127.0.0.1 - - [05/Jul/2026 03:11:18] "GET /editor?action=add_element&mk=Kimia%20Unsur&topik=Langmuir-Hinshelwood%20mechanism HTTP/1.1" 200 -
+2026-07-05 03:11:27,360 [INFO] 127.0.0.1 - - [05/Jul/2026 03:11:27] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-07-05 03:11:27,376 [INFO] 127.0.0.1 - - [05/Jul/2026 03:11:27] "GET /?mk=Kimia%20Unsur&topik=Langmuir-Hinshelwood%20mechanism HTTP/1.1" 200 -
+2026-07-05 03:11:27,444 [INFO] 127.0.0.1 - - [05/Jul/2026 03:11:27] "GET /api/data HTTP/1.1" 200 -
+2026-07-05 03:11:27,492 [INFO] 127.0.0.1 - - [05/Jul/2026 03:11:27] "[36mGET /storage/Kimia_Unsur/Langmuir-Hinshelwood_mechanism/Kimia_Unsur_Langmuir-Hinshelwood_mechanism_20260705_030137.png HTTP/1.1[0m" 304 -
+2026-07-05 03:21:15,429 [INFO] 127.0.0.1 - - [05/Jul/2026 03:21:15] "GET /editor?action=add_element&mk=Kimia%20Unsur&topik=Langmuir-Hinshelwood%20mechanism HTTP/1.1" 200 -
+2026-07-05 03:21:40,400 [INFO] 127.0.0.1 - - [05/Jul/2026 03:21:40] "GET / HTTP/1.1" 200 -
+2026-07-05 03:21:40,501 [INFO] 127.0.0.1 - - [05/Jul/2026 03:21:40] "GET /api/data HTTP/1.1" 200 -
+2026-07-05 03:21:42,479 [INFO] 127.0.0.1 - - [05/Jul/2026 03:21:42] "[36mGET /storage/Kimia_Unsur/Langmuir-Hinshelwood_mechanism/Kimia_Unsur_Langmuir-Hinshelwood_mechanism_20260705_030137.png HTTP/1.1[0m" 304 -
+2026-07-05 03:45:19,437 [INFO] 127.0.0.1 - - [05/Jul/2026 03:45:19] "GET /editor?action=add_element&mk=Kimia%20Unsur&topik=Langmuir-Hinshelwood%20mechanism HTTP/1.1" 200 -
+2026-07-05 03:45:31,303 [INFO] 127.0.0.1 - - [05/Jul/2026 03:45:31] "POST /upload/image HTTP/1.1" 200 -
+2026-07-05 03:45:31,373 [INFO] 127.0.0.1 - - [05/Jul/2026 03:45:31] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-07-05 03:45:31,384 [INFO] 127.0.0.1 - - [05/Jul/2026 03:45:31] "GET /?mk=Kimia%20Unsur&topik=Langmuir-Hinshelwood%20mechanism HTTP/1.1" 200 -
+2026-07-05 03:45:31,445 [INFO] 127.0.0.1 - - [05/Jul/2026 03:45:31] "GET /api/data HTTP/1.1" 200 -
+2026-07-05 03:45:31,490 [INFO] 127.0.0.1 - - [05/Jul/2026 03:45:31] "[36mGET /storage/Kimia_Unsur/Langmuir-Hinshelwood_mechanism/Kimia_Unsur_Langmuir-Hinshelwood_mechanism_20260705_030137.png HTTP/1.1[0m" 304 -
+2026-07-05 03:45:31,503 [INFO] 127.0.0.1 - - [05/Jul/2026 03:45:31] "GET /storage/Kimia_Unsur/Langmuir-Hinshelwood_mechanism/Kimia_Unsur_Langmuir-Hinshelwood_mechanism_20260705_034531.png HTTP/1.1" 200 -
+2026-07-05 03:51:29,901 [INFO] 127.0.0.1 - - [05/Jul/2026 03:51:29] "GET /editor?action=edit_element&mk=Kimia%20Unsur&topik=Langmuir-Hinshelwood%20mechanism&id=5 HTTP/1.1" 200 -
+2026-07-05 03:51:30,361 [INFO] 127.0.0.1 - - [05/Jul/2026 03:51:30] "[36mGET /storage/Kimia_Unsur/Langmuir-Hinshelwood_mechanism/Kimia_Unsur_Langmuir-Hinshelwood_mechanism_20260705_034531.png HTTP/1.1[0m" 304 -
+2026-07-05 03:51:37,953 [INFO] 127.0.0.1 - - [05/Jul/2026 03:51:37] "GET / HTTP/1.1" 200 -
+2026-07-05 03:51:38,024 [INFO] 127.0.0.1 - - [05/Jul/2026 03:51:38] "GET /api/data HTTP/1.1" 200 -
+2026-07-05 03:51:40,488 [INFO] 127.0.0.1 - - [05/Jul/2026 03:51:40] "[36mGET /storage/Kimia_Unsur/Langmuir-Hinshelwood_mechanism/Kimia_Unsur_Langmuir-Hinshelwood_mechanism_20260705_030137.png HTTP/1.1[0m" 304 -
+2026-07-05 03:51:40,492 [INFO] 127.0.0.1 - - [05/Jul/2026 03:51:40] "[36mGET /storage/Kimia_Unsur/Langmuir-Hinshelwood_mechanism/Kimia_Unsur_Langmuir-Hinshelwood_mechanism_20260705_034531.png HTTP/1.1[0m" 304 -
+2026-07-05 03:52:05,151 [INFO] 127.0.0.1 - - [05/Jul/2026 03:52:05] "GET /editor?action=add_element&mk=Kimia%20Unsur&topik=Langmuir-Hinshelwood%20mechanism HTTP/1.1" 200 -
+2026-07-05 19:45:48,687 [INFO] [pywebview] Window ditutup.
+2026-07-05 21:59:16,075 [INFO] Aplikasi dimulai | frozen=True
+2026-07-05 21:59:16,076 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\PersonalNotebook\_internal
+2026-07-05 21:59:16,076 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\PersonalNotebook
+2026-07-05 21:59:16,806 [INFO] Database utama berhasil diinisialisasi.
+2026-07-05 21:59:18,870 [INFO] Flask akan berjalan di http://127.0.0.1:5000
+2026-07-05 21:59:18,911 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-05 21:59:18,911 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-05 21:59:19,186 [INFO] Flask siap. Membuka UI...
+2026-07-05 21:59:19,240 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5000
+2026-07-05 21:59:22,791 [INFO] 127.0.0.1 - - [05/Jul/2026 21:59:22] "GET / HTTP/1.1" 200 -
+2026-07-05 21:59:23,181 [INFO] 127.0.0.1 - - [05/Jul/2026 21:59:23] "GET /api/data HTTP/1.1" 200 -
+2026-07-05 21:59:23,559 [INFO] 127.0.0.1 - - [05/Jul/2026 21:59:23] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-07-05 21:59:25,853 [INFO] 127.0.0.1 - - [05/Jul/2026 21:59:25] "GET /storage/Kimia_Unsur/Langmuir-Hinshelwood_mechanism/Kimia_Unsur_Langmuir-Hinshelwood_mechanism_20260705_034531.png HTTP/1.1" 200 -
+2026-07-05 21:59:25,854 [INFO] 127.0.0.1 - - [05/Jul/2026 21:59:25] "GET /storage/Kimia_Unsur/Langmuir-Hinshelwood_mechanism/Kimia_Unsur_Langmuir-Hinshelwood_mechanism_20260705_030137.png HTTP/1.1" 200 -
+2026-07-05 22:57:38,275 [INFO] [pywebview] Window ditutup.
+2026-07-07 15:27:58,989 [INFO] Aplikasi dimulai | frozen=True
+2026-07-07 15:27:58,989 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\PersonalNotebook\_internal
+2026-07-07 15:27:58,989 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\PersonalNotebook
+2026-07-07 15:27:59,732 [INFO] Database utama berhasil diinisialisasi.
+2026-07-07 15:28:01,791 [INFO] Flask akan berjalan di http://127.0.0.1:5000
+2026-07-07 15:28:01,911 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-07 15:28:01,911 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-07 15:28:02,119 [INFO] Flask siap. Membuka UI...
+2026-07-07 15:28:02,189 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5000
+2026-07-07 15:28:07,689 [INFO] 127.0.0.1 - - [07/Jul/2026 15:28:07] "GET / HTTP/1.1" 200 -
+2026-07-07 15:28:24,938 [INFO] 127.0.0.1 - - [07/Jul/2026 15:28:24] "GET /api/data HTTP/1.1" 200 -
+2026-07-07 15:28:25,859 [INFO] 127.0.0.1 - - [07/Jul/2026 15:28:25] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-07-07 15:28:41,103 [INFO] 127.0.0.1 - - [07/Jul/2026 15:28:41] "GET /editor?action=add_mk HTTP/1.1" 200 -
+2026-07-07 15:28:55,077 [INFO] 127.0.0.1 - - [07/Jul/2026 15:28:55] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-07-07 15:28:55,088 [INFO] 127.0.0.1 - - [07/Jul/2026 15:28:55] "GET /?mk=Sintesis HTTP/1.1" 200 -
+2026-07-07 15:28:55,178 [INFO] 127.0.0.1 - - [07/Jul/2026 15:28:55] "GET /api/data HTTP/1.1" 200 -
+2026-07-07 15:28:57,344 [INFO] 127.0.0.1 - - [07/Jul/2026 15:28:57] "GET /editor?action=add_pertemuan&mk=Sintesis HTTP/1.1" 200 -
+2026-07-07 15:29:11,760 [INFO] 127.0.0.1 - - [07/Jul/2026 15:29:11] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-07-07 15:29:11,772 [INFO] 127.0.0.1 - - [07/Jul/2026 15:29:11] "GET /?mk=Sintesis&topik=Sintesis%20Kalkon HTTP/1.1" 200 -
+2026-07-07 15:29:11,848 [INFO] 127.0.0.1 - - [07/Jul/2026 15:29:11] "GET /api/data HTTP/1.1" 200 -
+2026-07-07 15:29:18,391 [INFO] 127.0.0.1 - - [07/Jul/2026 15:29:18] "GET /editor?action=add_element&mk=Sintesis&topik=Sintesis%20Kalkon HTTP/1.1" 200 -
+2026-07-07 15:29:22,958 [INFO] 127.0.0.1 - - [07/Jul/2026 15:29:22] "GET / HTTP/1.1" 200 -
+2026-07-07 15:29:23,031 [INFO] 127.0.0.1 - - [07/Jul/2026 15:29:23] "GET /api/data HTTP/1.1" 200 -
+2026-07-07 15:44:33,720 [INFO] 127.0.0.1 - - [07/Jul/2026 15:44:33] "GET /editor?action=add_element&mk=Sintesis&topik=Sintesis%20Kalkon HTTP/1.1" 200 -
+2026-07-07 15:45:28,008 [INFO] 127.0.0.1 - - [07/Jul/2026 15:45:28] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-07-07 15:45:28,039 [INFO] 127.0.0.1 - - [07/Jul/2026 15:45:28] "GET /?mk=Sintesis&topik=Sintesis%20Kalkon HTTP/1.1" 200 -
+2026-07-07 15:45:28,155 [INFO] 127.0.0.1 - - [07/Jul/2026 15:45:28] "GET /api/data HTTP/1.1" 200 -
+2026-07-07 15:45:39,792 [INFO] 127.0.0.1 - - [07/Jul/2026 15:45:39] "GET /editor?action=add_element&mk=Sintesis&topik=Sintesis%20Kalkon HTTP/1.1" 200 -
+2026-07-07 15:46:27,810 [INFO] 127.0.0.1 - - [07/Jul/2026 15:46:27] "POST /upload/image HTTP/1.1" 200 -
+2026-07-07 15:46:27,875 [INFO] 127.0.0.1 - - [07/Jul/2026 15:46:27] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-07-07 15:46:27,892 [INFO] 127.0.0.1 - - [07/Jul/2026 15:46:27] "GET /?mk=Sintesis&topik=Sintesis%20Kalkon HTTP/1.1" 200 -
+2026-07-07 15:46:28,001 [INFO] 127.0.0.1 - - [07/Jul/2026 15:46:28] "GET /api/data HTTP/1.1" 200 -
+2026-07-07 15:46:28,131 [INFO] 127.0.0.1 - - [07/Jul/2026 15:46:28] "GET /storage/Sintesis/Sintesis_Kalkon/Sintesis_Sintesis_Kalkon_20260707_154627.png HTTP/1.1" 200 -
+2026-07-07 16:03:35,830 [INFO] 127.0.0.1 - - [07/Jul/2026 16:03:35] "GET /api/runtime HTTP/1.1" 200 -
+2026-07-07 16:03:36,045 [WARNING] SAVE_DIALOG is deprecated and will be removed in a future version. Use 'FileDialog.SAVE' instead.
+2026-07-07 16:03:36,049 [WARNING] SAVE_DIALOG is deprecated and will be removed in a future version. Use 'FileDialog.SAVE' instead.
+2026-07-07 16:03:36,049 [WARNING] SAVE_DIALOG is deprecated and will be removed in a future version. Use 'FileDialog.SAVE' instead.
+2026-07-07 16:03:47,696 [ERROR] [export] PDF build error: No module named 'PIL'
+Traceback (most recent call last):
+  File "app.py", line 1474, in export_pdf
+  File "app.py", line 1088, in _build_pdf_bytes
+  File "pyimod02_importers.py", line 457, in exec_module
+  File "reportlab\lib\styles.py", line 26, in <module>
+  File "pyimod02_importers.py", line 457, in exec_module
+  File "reportlab\lib\colors.py", line 43, in <module>
+  File "pyimod02_importers.py", line 457, in exec_module
+  File "reportlab\lib\rl_accel.py", line 34, in <module>
+  File "pyimod02_importers.py", line 457, in exec_module
+  File "reportlab\lib\utils.py", line 15, in <module>
+ModuleNotFoundError: No module named 'PIL'
+2026-07-07 16:03:47,713 [INFO] 127.0.0.1 - - [07/Jul/2026 16:03:47] "[35m[1mGET /export/pdf?mk=Sintesis&topik=Sintesis%20Kalkon&save_path=C:\\Users\\dahdi\\Downloads\\Sintesis_Sintesis_Kalkon.pdf HTTP/1.1[0m" 500 -
+2026-07-07 16:04:00,797 [WARNING] SAVE_DIALOG is deprecated and will be removed in a future version. Use 'FileDialog.SAVE' instead.
+2026-07-07 16:04:00,798 [WARNING] SAVE_DIALOG is deprecated and will be removed in a future version. Use 'FileDialog.SAVE' instead.
+2026-07-07 16:04:00,798 [WARNING] SAVE_DIALOG is deprecated and will be removed in a future version. Use 'FileDialog.SAVE' instead.
+2026-07-07 16:04:10,189 [INFO] [export] HTML disimpan ke: C:\Users\dahdi\Downloads\Sintesis_Sintesis_Kalkon.html
+2026-07-07 16:04:10,193 [INFO] 127.0.0.1 - - [07/Jul/2026 16:04:10] "GET /export/html?mk=Sintesis&topik=Sintesis%20Kalkon&save_path=C:\\Users\\dahdi\\Downloads\\Sintesis_Sintesis_Kalkon.html HTTP/1.1" 200 -
+2026-07-07 16:04:42,649 [WARNING] SAVE_DIALOG is deprecated and will be removed in a future version. Use 'FileDialog.SAVE' instead.
+2026-07-07 16:04:42,649 [WARNING] SAVE_DIALOG is deprecated and will be removed in a future version. Use 'FileDialog.SAVE' instead.
+2026-07-07 16:04:42,649 [WARNING] SAVE_DIALOG is deprecated and will be removed in a future version. Use 'FileDialog.SAVE' instead.
+2026-07-07 16:04:49,330 [INFO] [pywebview] Window ditutup.
+2026-07-07 16:05:27,116 [INFO] Aplikasi dimulai | frozen=True
+2026-07-07 16:05:27,116 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\PersonalNotebook\_internal
+2026-07-07 16:05:27,116 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\PersonalNotebook
+2026-07-07 16:05:27,341 [INFO] Database utama berhasil diinisialisasi.
+2026-07-07 16:05:29,390 [INFO] Flask akan berjalan di http://127.0.0.1:5001
+2026-07-07 16:05:29,454 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+2026-07-07 16:05:29,454 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-07 16:05:29,715 [INFO] Flask siap. Membuka UI...
+2026-07-07 16:05:29,812 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5001
+2026-07-07 16:05:34,145 [INFO] 127.0.0.1 - - [07/Jul/2026 16:05:34] "GET / HTTP/1.1" 200 -
+2026-07-07 16:05:35,037 [INFO] 127.0.0.1 - - [07/Jul/2026 16:05:35] "GET /api/data HTTP/1.1" 200 -
+2026-07-07 16:05:37,257 [INFO] 127.0.0.1 - - [07/Jul/2026 16:05:37] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-07-07 16:05:38,229 [INFO] 127.0.0.1 - - [07/Jul/2026 16:05:38] "GET /storage/Kimia_Unsur/Langmuir-Hinshelwood_mechanism/Kimia_Unsur_Langmuir-Hinshelwood_mechanism_20260705_034531.png HTTP/1.1" 200 -
+2026-07-07 16:05:38,229 [INFO] 127.0.0.1 - - [07/Jul/2026 16:05:38] "GET /storage/Kimia_Unsur/Langmuir-Hinshelwood_mechanism/Kimia_Unsur_Langmuir-Hinshelwood_mechanism_20260705_030137.png HTTP/1.1" 200 -
+2026-07-07 16:05:40,278 [INFO] 127.0.0.1 - - [07/Jul/2026 16:05:40] "GET /storage/Sintesis/Sintesis_Kalkon/Sintesis_Sintesis_Kalkon_20260707_154627.png HTTP/1.1" 200 -
+2026-07-07 16:05:43,968 [INFO] 127.0.0.1 - - [07/Jul/2026 16:05:43] "GET /api/runtime HTTP/1.1" 200 -
+2026-07-07 16:05:43,982 [WARNING] SAVE_DIALOG is deprecated and will be removed in a future version. Use 'FileDialog.SAVE' instead.
+2026-07-07 16:05:43,982 [WARNING] SAVE_DIALOG is deprecated and will be removed in a future version. Use 'FileDialog.SAVE' instead.
+2026-07-07 16:05:43,982 [WARNING] SAVE_DIALOG is deprecated and will be removed in a future version. Use 'FileDialog.SAVE' instead.
+2026-07-07 16:05:47,136 [INFO] [archive] Subject 'Sintesis' diekspor ke: C:\Users\dahdi\Downloads\Sintesis.sbxp
+2026-07-07 16:05:47,137 [INFO] 127.0.0.1 - - [07/Jul/2026 16:05:47] "POST /api/archive/export/subject HTTP/1.1" 200 -
+2026-07-07 16:05:54,529 [INFO] [pywebview] Window ditutup.
+2026-07-09 08:34:41,599 [INFO] Aplikasi dimulai | frozen=True
+2026-07-09 08:34:41,600 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\PersonalNotebook\_internal
+2026-07-09 08:34:41,600 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\PersonalNotebook
+2026-07-09 08:34:43,044 [INFO] Database utama berhasil diinisialisasi.
+2026-07-09 08:34:45,064 [INFO] Flask akan berjalan di http://127.0.0.1:5000
+2026-07-09 08:34:45,292 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-09 08:34:45,292 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-09 08:34:45,395 [INFO] Flask siap. Membuka UI...
+2026-07-09 08:34:45,547 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5000
+2026-07-09 08:34:46,496 [INFO] Aplikasi dimulai | frozen=True
+2026-07-09 08:34:46,496 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\PersonalNotebook\_internal
+2026-07-09 08:34:46,496 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\PersonalNotebook
+2026-07-09 08:34:46,727 [INFO] Database utama berhasil diinisialisasi.
+2026-07-09 08:34:48,745 [INFO] Flask akan berjalan di http://127.0.0.1:5001
+2026-07-09 08:34:48,774 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+2026-07-09 08:34:48,774 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-09 08:34:49,057 [INFO] Flask siap. Membuka UI...
+2026-07-09 08:34:49,138 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5001
+2026-07-09 08:34:55,983 [INFO] Aplikasi dimulai | frozen=True
+2026-07-09 08:34:55,984 [INFO] BUNDLE_DIR : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\PersonalNotebook\_internal
+2026-07-09 08:34:55,984 [INFO] DATA_DIR   : C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia\PersonalNotebook
+2026-07-09 08:34:56,224 [INFO] Database utama berhasil diinisialisasi.
+2026-07-09 08:34:58,245 [INFO] Flask akan berjalan di http://127.0.0.1:5002
+2026-07-09 08:34:58,298 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5002
+2026-07-09 08:34:58,298 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-09 08:34:58,559 [INFO] Flask siap. Membuka UI...
+2026-07-09 08:35:00,083 [INFO] [pywebview] Window dibuat: http://127.0.0.1:5002
+2026-07-09 08:35:03,465 [INFO] 127.0.0.1 - - [09/Jul/2026 08:35:03] "GET / HTTP/1.1" 200 -
+2026-07-09 08:35:03,557 [INFO] 127.0.0.1 - - [09/Jul/2026 08:35:03] "GET / HTTP/1.1" 200 -
+2026-07-09 08:35:04,605 [INFO] 127.0.0.1 - - [09/Jul/2026 08:35:04] "GET /api/data HTTP/1.1" 200 -
+2026-07-09 08:35:04,927 [INFO] 127.0.0.1 - - [09/Jul/2026 08:35:04] "GET /api/data HTTP/1.1" 200 -
+2026-07-09 08:35:05,857 [INFO] 127.0.0.1 - - [09/Jul/2026 08:35:05] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-07-09 08:35:06,407 [INFO] 127.0.0.1 - - [09/Jul/2026 08:35:06] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-07-09 08:35:09,415 [INFO] 127.0.0.1 - - [09/Jul/2026 08:35:09] "GET / HTTP/1.1" 200 -
+2026-07-09 08:35:10,891 [INFO] [pywebview] Window ditutup.
+2026-07-09 08:35:14,897 [INFO] 127.0.0.1 - - [09/Jul/2026 08:35:14] "GET /api/data HTTP/1.1" 200 -
+2026-07-09 08:35:15,193 [INFO] 127.0.0.1 - - [09/Jul/2026 08:35:15] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-07-09 08:35:32,460 [INFO] 127.0.0.1 - - [09/Jul/2026 08:35:32] "GET /storage/Sintesis/Sintesis_Kalkon/Sintesis_Sintesis_Kalkon_20260707_154627.png HTTP/1.1" 200 -
+2026-07-09 08:35:36,422 [INFO] 127.0.0.1 - - [09/Jul/2026 08:35:36] "GET /editor?action=add_mk HTTP/1.1" 200 -
+2026-07-09 08:36:57,701 [INFO] 127.0.0.1 - - [09/Jul/2026 08:36:57] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-07-09 08:36:57,720 [INFO] 127.0.0.1 - - [09/Jul/2026 08:36:57] "GET /?mk=Pemisahan%20dan%20elektronalisis HTTP/1.1" 200 -
+2026-07-09 08:36:57,847 [INFO] 127.0.0.1 - - [09/Jul/2026 08:36:57] "GET /api/data HTTP/1.1" 200 -
+2026-07-09 08:37:01,423 [INFO] 127.0.0.1 - - [09/Jul/2026 08:37:01] "GET /editor?action=add_pertemuan&mk=Pemisahan%20dan%20elektronalisis HTTP/1.1" 200 -
+2026-07-09 08:37:26,296 [INFO] 127.0.0.1 - - [09/Jul/2026 08:37:26] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-07-09 08:37:26,307 [INFO] 127.0.0.1 - - [09/Jul/2026 08:37:26] "GET /?mk=Pemisahan%20dan%20elektronalisis&topik=Dasar%20Elektrokimia HTTP/1.1" 200 -
+2026-07-09 08:37:26,417 [INFO] 127.0.0.1 - - [09/Jul/2026 08:37:26] "GET /api/data HTTP/1.1" 200 -
+2026-07-09 08:38:16,671 [INFO] 127.0.0.1 - - [09/Jul/2026 08:38:16] "GET /editor?action=add_element&mk=Pemisahan%20dan%20elektronalisis&topik=Dasar%20Elektrokimia HTTP/1.1" 200 -
+2026-07-09 08:38:30,782 [INFO] 127.0.0.1 - - [09/Jul/2026 08:38:30] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-07-09 08:38:30,790 [INFO] 127.0.0.1 - - [09/Jul/2026 08:38:30] "GET /?mk=Pemisahan%20dan%20elektronalisis&topik=Dasar%20Elektrokimia HTTP/1.1" 200 -
+2026-07-09 08:38:30,858 [INFO] 127.0.0.1 - - [09/Jul/2026 08:38:30] "GET /api/data HTTP/1.1" 200 -
+2026-07-09 08:38:33,293 [INFO] 127.0.0.1 - - [09/Jul/2026 08:38:33] "GET /editor?action=add_element&mk=Pemisahan%20dan%20elektronalisis&topik=Dasar%20Elektrokimia HTTP/1.1" 200 -
+2026-07-09 08:38:42,557 [INFO] 127.0.0.1 - - [09/Jul/2026 08:38:42] "[32mPOST /api/add HTTP/1.1[0m" 302 -
+2026-07-09 08:38:42,570 [INFO] 127.0.0.1 - - [09/Jul/2026 08:38:42] "GET /?mk=Pemisahan%20dan%20elektronalisis&topik=Dasar%20Elektrokimia HTTP/1.1" 200 -
+2026-07-09 08:38:42,646 [INFO] 127.0.0.1 - - [09/Jul/2026 08:38:42] "GET /api/data HTTP/1.1" 200 -
+2026-07-09 09:59:48,245 [INFO] [pywebview] Window ditutup.

@@ -1,0 +1,43 @@
+Includes the following Components:
+  Applications :
+    ACD/ChemBasic
+    ACD/3D Viewer FreeWare
+    ACD/ChemSketch FreeWare
+    ACD/IUPAC Name FreeWare Add-On
+
+CBEDIT.EXE	(File Version C25C41, Build 121153, 22 Mar 2021) ACD/Labs Release 2019
+WIN32\CBRTL.DLL	(File Version C45C41, Build 136305, 11 Dec 2023) ACD/Labs Release 2022
+CBINSTAL.EXE	(File Version C05C41, Build 108653, 25 Apr 2019) ACD/Labs Release 2019
+DBFLIB.DLL	(File Version F36S41, Build 147320, 10 Dec 2025) ACD/Labs Release 2026
+FRMMGRL.EXE	(File Version D36S41, Build 147320, 10 Dec 2025) ACD/Labs Release 2026
+BUGREPORT.DLL	(File Version R25M41, Build 147667, 14 Jan 2026) ACD/Labs Release 2025
+BUGREPORTDLG.DLL	(File Version R25M41, Build 147667, 14 Jan 2026) ACD/Labs Release 2025
+RUNASADM.EXE	(File Version R05M41, Build 108655, 24 Apr 2019) ACD/Labs Release 2019
+ACDLOGO.DLL	(File Version L05O41, Build 144350, 06 May 2025) ACD/Labs Release 2024
+FVER.EXE	(File Version R05M41, Build 143760, 12 Sep 2025) ACD/Labs Release 2024
+SHOW3D.EXE	(File Version D45E41, Build 141684, 18 Nov 2024) ACD/Labs Release 2024
+ACDAD.DLL	(File Version A45Y41, Build 137768, 01 Mar 2024) ACD/Labs Release 2024
+CHEMSK.EXE	(File Version C65E41, Build 147869, 26 Jan 2026) ACD/Labs Release 2026
+ACDHOST.EXE	(File Version L25N41, Build 147345, 10 Dec 2025) ACD/Labs Release 2025
+DM3DOPT.DLL	(File Version D45T41, Build 130928, 16 Dec 2022) ACD/Labs Release 2022
+DMTAUT.DLL	(File Version D05T41, Build 108653, 25 Apr 2019) ACD/Labs Release 2019
+DMSMILES.DLL	(File Version L65S41, Build 148190, 20 Feb 2026) ACD/Labs Release 2026
+ACDTIPS.DLL	(File Version T05Y41, Build 108653, 25 Apr 2019) ACD/Labs Release 2019
+LABELS.DLL	(File Version L45S41, Build 130928, 16 Dec 2022) ACD/Labs Release 2022
+DRMAP.DLL	(File Version R36P41, Build 147320, 10 Dec 2025) ACD/Labs Release 2026
+DMPROPS.DLL	(File Version D65S41, Build 147869, 26 Jan 2026) ACD/Labs Release 2026
+DMCLEAN.DLL	(File Version L45S41, Build 130928, 16 Dec 2022) ACD/Labs Release 2022
+WIN32\SCLEAN\SCLEANPROXY.EXE	(File Version S36Y41, Build 147010, 20 Nov 2025) ACD/Labs Release 2025
+LIBINCHI.DLL	(File Version I00S1, Build 458752, 12 Nov 2024) ACD/Labs Release 7
+RD3DOPT.DLL	(File Version C45H41, Build 129608, 26 Sep 2022) ACD/Labs Release 2022
+REGADDON.EXE	(File Version I05R41, Build 108655, 24 Apr 2019) ACD/Labs Release 2019
+WEBSEARCH.ADDON	(File Version W45H41, Build 133307, 10 May 2023) ACD/Labs Release 2022
+OPENSSL\LIBEAY32.DLL	(File Version T00T1, Build 131089, 24 Apr 2019) ACD/Labs Release 2
+OPENSSL\SSLEAY32.DLL	(File Version T00T1, Build 131089, 24 Apr 2019) ACD/Labs Release 2
+INDYSSL.DLL	(File Version I26Y41, Build 147320, 10 Dec 2025) ACD/Labs Release 2026
+SCIFINDER.ADDON	(File Version C45E41, Build 141702, 19 Nov 2024) ACD/Labs Release 2024
+ENUMMARKUSH.ADDON	(File Version E05H41, Build 113437, 24 Dec 2019) ACD/Labs Release 2019
+STEREOGENERATOR.ADDON	(File Version S45R41, Build 133307, 10 May 2023) ACD/Labs Release 2022
+LOGPCALC.ADDON	(File Version L05C41, Build 110018, 28 Jun 2019) ACD/Labs Release 2019
+PCHCALCLIB.DLL	(File Version P15M41, Build 145216, 25 Jun 2025) ACD/Labs Release 2023
+NAMIFREE.DLL	(File Version N25E41, Build 147950, 03 Feb 2026) ACD/Labs Release 2026
