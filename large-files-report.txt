@@ -1,0 +1,8 @@
+﻿Laporan file lebih besar dari 100 MB
+Repository: C:\Users\dahdi\OneDrive\Documents\Dahdi\Enviroment Belajar Kimia
+Ambang batas: 100 MB
+
+[  124,64 MB] Kimia Organik/Disk1.bin
+
+Aturan .gitignore baru ditambahkan: 1
+Catatan: .gitignore tidak menghentikan pelacakan file yang sudah pernah di-commit.
